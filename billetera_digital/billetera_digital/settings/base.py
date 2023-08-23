@@ -32,12 +32,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "aplications.identification_details",
-    "aplications.invoice",
-    "aplications.payments",
-    "aplications.paymenttransfer",
-    "aplications.user",
-    "aplications.Withdrawal",
+    # local app
+    "app_billetera",
 
 ]
 
