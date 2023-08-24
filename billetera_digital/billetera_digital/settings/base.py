@@ -33,7 +33,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # local app
-    "app_billetera",
+    "aplications.app_billetera",
+    "aplications.user",
+    "phonenumber_field",
 
 ]
 
