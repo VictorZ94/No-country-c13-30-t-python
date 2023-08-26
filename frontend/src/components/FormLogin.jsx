@@ -9,10 +9,10 @@ const FormLogin = () => {
       </div>
       <div>
         <div className="mb-2 block">
-            <Label
+          <Label
             htmlFor="email1"
             value="E-mail"
-            />
+          />
         </div>
         <TextInput
           id="email1"
