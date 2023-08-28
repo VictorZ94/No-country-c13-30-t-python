@@ -13,5 +13,5 @@ class SignUpView(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')  # Cambia 'home' por la URL deseada después del registro
+            return redirect('home')
         return render(request, 'app_wallet/signup.html', {'form': form})
