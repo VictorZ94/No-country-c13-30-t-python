@@ -11,7 +11,8 @@ export default {
           300: "#444965",
           400: "#2A2B4D",
           500: "#110F36"
-        }
+        },
+        "secondary-c": "#4F48ED"
       },
       backgroundColor: theme => ({
         ...theme("colors"),

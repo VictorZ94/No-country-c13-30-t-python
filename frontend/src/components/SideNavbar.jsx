@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import { useState } from "react";
 import { Avatar, Sidebar } from 'flowbite-react';
 import { HiUserCircle, HiShoppingCart } from 'react-icons/hi';
 import { MdAccountBalanceWallet } from "react-icons/md";
@@ -13,6 +11,21 @@ import User1 from "../assets/avatar-example.png";
 import { Link } from "react-router-dom";
 
 const SideNavbar = () => {
+  const [itemName, setItemName] = useState(window.location.pathname);
+
+  // const navItems = [
+  //   {
+  //     name: "Mi Billetera",
+  //     path: "/",
+  //     icon: <MdAccountBalanceWallet className={navIconStyle} />
+  //   },
+  //   {
+  //     name: "Reportes",
+  //     href: "/reports",
+  //     icon: <BsFileEarmarkTextFill className={navIconStyle}/>
+  //   }
+  // ];
+
   return (
     <Sidebar className="w-80">
       <Sidebar.Logo
@@ -24,71 +37,97 @@ const SideNavbar = () => {
       </Sidebar.Logo>
       <Sidebar.Items className="px-4">
         <Sidebar.ItemGroup className="flex flex-col h-[80vh] justify-between">
-          <div className="flex flex-col gap-y-2">
-            <Sidebar.Item
-              icon={MdAccountBalanceWallet}
-            >
-              <Link to="/">
+          <li className="flex flex-col gap-y-2">
+            <li className="flex" onClick={() => setItemName("/")}>
+              <Link
+                to="/"
+                className={`nav-item ${itemName === "/" ? "text-secondary-c" : "text-gray-900"}`}
+              >
+              <MdAccountBalanceWallet
+                className={`nav-icon-item ${itemName === "/" ? "text-secondary-c" : "text-gray-500"}`}
+              />
                 Mi Billetera
               </Link>
-            </Sidebar.Item>
-            <Sidebar.Item
-              icon={BsFileEarmarkTextFill}
-            >
-              <Link to="/reports">
+            </li>
+            <li className="flex" onClick={() => setItemName("/reports")}>
+              <Link
+                to="/reports"
+                className={`nav-item ${itemName === "/reports" ? "text-secondary-c" : "text-gray-900"}`}
+              >
+              <BsFileEarmarkTextFill
+                className={`nav-icon-item ${itemName === "/reports" ? "text-secondary-c" : "text-gray-500"}`}
+              />
                 Reportes
               </Link>
-            </Sidebar.Item>
-            <Sidebar.Item
-              href="#"
-              icon={IoLogoUsd}
-            >
-              <p>
+            </li>
+            <li className="flex">
+              <Link
+                to="/"
+                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              >
+              <IoLogoUsd
+                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              />
                 Recarga de fondos
-              </p>
-            </Sidebar.Item>
-            <Sidebar.Item
-              href="#"
-              icon={BsCreditCard2BackFill}
-            >
-              <p>
+              </Link>
+            </li>
+            <li className="flex">
+              <Link
+                to="/"
+                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              >
+              <BsCreditCard2BackFill
+                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              />
                 Pagos y compras
-              </p>
-            </Sidebar.Item>
-            <Sidebar.Item
-              href="#"
-              icon={HiShoppingCart}
-            >
-              <p>
+              </Link>
+            </li>
+            <li className="flex">
+              <Link
+                to="/"
+                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              >
+              <HiShoppingCart
+                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              />
                 Promociones y Ofertas
-              </p>
-            </Sidebar.Item>
-            <Sidebar.Item
-              href="#"
-              icon={AiFillLock}
-            >
-              <p>
+              </Link>
+            </li>
+            <li className="flex">
+              <Link
+                to="/"
+                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              >
+              <AiFillLock
+                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              />
                 Seguridad
-              </p>
-            </Sidebar.Item>
-            <Sidebar.Item
-              href="#"
-              icon={HiUserCircle}
-            >
-              <p>
+              </Link>
+            </li>
+            <li className="flex">
+              <Link
+                to="/"
+                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              >
+              <HiUserCircle
+                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              />
                 Soporte al cliente
-              </p>
-            </Sidebar.Item>
-            <Sidebar.Item
-              href="#"
-              icon={HiUserCircle}
-            >
-              <p>
+              </Link>
+            </li>
+            <li className="flex">
+              <Link
+                to="/"
+                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              >
+              <HiUserCircle
+                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+              />
                 Terminos y condiciones
-              </p>
-            </Sidebar.Item>
-          </div>
-          <div>
+              </Link>
+            </li>
+          </li>
+          <li>
             <div className="flex flex-wrap gap-2">
               <Avatar img={User1} rounded />
               <div>
@@ -98,7 +137,7 @@ const SideNavbar = () => {
                 <p className="text-gray-700">id: 0123456789</p>
               </div>
             </div>
-          </div>
+          </li>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
