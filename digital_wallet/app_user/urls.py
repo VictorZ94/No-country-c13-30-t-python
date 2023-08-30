@@ -21,4 +21,5 @@ app_name = "user_app"
 urlpatterns = [
     # ... otras URLs ...
     path('api/v1/userdetail/', view=UserDetailApiView.as_view(), name='userdetail'),
+    path('api/v1/createuser/', view=UserDetailApiView.as_view(), name='createuser'),
 ]
