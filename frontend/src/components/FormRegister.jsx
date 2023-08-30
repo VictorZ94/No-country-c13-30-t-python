@@ -1,4 +1,5 @@
 import { Button, Label, TextInput } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 const FormRegister = () => {
   return (
@@ -105,7 +106,7 @@ const FormRegister = () => {
                   Crear
                 </Button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                    Already have an account? <a href="login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                    Ya tiene una cuenta? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</Link>
                 </p>
             </form>
         </div>

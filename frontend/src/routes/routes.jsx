@@ -3,11 +3,12 @@ import { createBrowserRouter } from 'react-router-dom';
 // @views
 import Login from '../views/Login';
 import Register from '../views/Register';
+import Home from '../views/Home';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Home />,
     errorElement: <div>Error page!</div>
   },
   {
