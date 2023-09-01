@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Avatar, Sidebar } from 'flowbite-react';
-import { HiUserCircle, HiShoppingCart } from 'react-icons/hi';
+import { HiUserCircle, HiShoppingCart, HiUser } from 'react-icons/hi';
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { BsFileEarmarkTextFill, BsCreditCard2BackFill } from "react-icons/bs";
 import { IoLogoUsd } from "react-icons/io";
@@ -124,6 +124,17 @@ const SideNavbar = () => {
                 className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
               />
                 Terminos y condiciones
+              </Link>
+            </li>
+            <li className="flex" onClick={() => setItemName("/profile")}>
+              <Link
+                to="/profile"
+                className={`nav-item ${itemName === "/profile" ? "text-secondary-c" : "text-gray-900"}`}
+              >
+              <HiUser
+                className={`nav-icon-item ${itemName === "/profile" ? "text-secondary-c" : "text-gray-500"}`}
+              />
+                Perfil
               </Link>
             </li>
           </li>
