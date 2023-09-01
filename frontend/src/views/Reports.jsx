@@ -1,5 +1,6 @@
 import React from "react";
 import SideNavbar from "../components/SideNavbar";
+import ReportsLayout from "../components/ReportLayout";
 
 const Reports = () => {
   return (
@@ -7,8 +8,8 @@ const Reports = () => {
         <div className="h-screen">
             <SideNavbar />
         </div>
-        <div className="p-2">
-            <h1 className="text-3xl">This is Reports Layout</h1>
+        <div className="p-8 flex-auto">
+            <ReportsLayout />
         </div>
     </div>
   );

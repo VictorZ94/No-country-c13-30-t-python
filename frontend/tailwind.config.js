@@ -18,17 +18,20 @@ export default {
         ...theme("colors"),
         "blanco-c": "#F7F8FB",
         "placeholder-c": "#D8D7F8",
-        "secondary-c": "#4F48ED"
+        "secondary-c": "#4F48ED",
+        "terciary-c": "#F7E01C"
       }),
       ringColor: {
         "blanco-c": "#F7F8FB",
         "placeholder-c": "#D8D7F8",
-        "secondary-c": "#4F48ED"
+        "secondary-c": "#4F48ED",
+        "terciary-c": "#F7E01C"
       },
       borderColor: {
         "blanco-c": "#F7F8FB",
         "placeholder-c": "#D8D7F8",
-        "secondary-c": "#4F48ED"
+        "secondary-c": "#4F48ED",
+        "terciary-c": "#F7E01C"
       }
     }
   },
