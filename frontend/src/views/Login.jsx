@@ -4,7 +4,7 @@ import FormLogin from "../components/FormLogin";
 const Login = () => {
   return (
       <div className="h-screen flex">
-        <div className="h-full flex-1 bg-blanco-c">
+        <div className="h-full hidden md:block flex-1 bg-blanco-c">
           <span className="flex h-full items-center justify-center">
             <img src="./src/assets/login-img.png" alt="" />
           </span>
