@@ -1,5 +1,6 @@
 import React from "react";
 import SideNavbar from "../components/SideNavbar";
+import FormProfile from "../components/FormProfile";
 
 const Profile = () => {
   return (
@@ -8,7 +9,7 @@ const Profile = () => {
             <SideNavbar />
         </div>
         <div className="p-8 flex-auto">
-            <h1>This is a profile view</h1>
+        <FormProfile />
         </div>
     </div>
   );
