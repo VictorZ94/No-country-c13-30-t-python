@@ -13,19 +13,6 @@ import { Link } from "react-router-dom";
 const SideNavbar = () => {
   const [itemName, setItemName] = useState(window.location.pathname);
 
-  // const navItems = [
-  //   {
-  //     name: "Mi Billetera",
-  //     path: "/",
-  //     icon: <MdAccountBalanceWallet className={navIconStyle} />
-  //   },
-  //   {
-  //     name: "Reportes",
-  //     href: "/reports",
-  //     icon: <BsFileEarmarkTextFill className={navIconStyle}/>
-  //   }
-  // ];
-
   return (
     <Sidebar className="w-80">
       <Sidebar.Logo
