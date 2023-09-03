@@ -44,7 +44,7 @@ DJANGO_APPS = [
 
 ]
 
-LOCAL_APPS = ['app_user']
+LOCAL_APPS = ['app_user.apps.AppUserConfig']
 
 THIRD_APPS = ['phonenumber_field',
               'corsheaders',
@@ -54,7 +54,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
 
 
 MIDDLEWARE = [
-
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,7 +62,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 
 ]
 
@@ -160,6 +159,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-]
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
