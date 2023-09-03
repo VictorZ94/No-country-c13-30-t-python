@@ -15,6 +15,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         user_obj = UserModel.objects.create_user(
             name=clean_data['name'],
             password=(clean_data['password']),
+            identification_type=clean_data['identification_type'],
             identification_number=clean_data['identification_number'],
             email=clean_data['email'],
             phone_number=clean_data['phone_number']
@@ -38,4 +39,4 @@ class UserLoginSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ["user_id", "last_login", "name", "email", "identification_type", "identification_number", "phone_number", "updated_at"]
