@@ -135,7 +135,7 @@ const SideNavbar = () => {
           </li>
           <li>
             <div className="flex flex-wrap gap-2">
-              <Avatar img={currentUser.avatar || User1} rounded />
+              <Avatar img={currentUser?.avatar || User1} rounded />
               <div>
                 <h1 className="font-bold mt-2">
                   {`${currentUser?.first_name} ${currentUser?.last_name}`}
