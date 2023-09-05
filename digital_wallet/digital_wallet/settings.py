@@ -44,7 +44,7 @@ DJANGO_APPS = [
 
 ]
 
-LOCAL_APPS = ['app_user.apps.AppUserConfig']
+LOCAL_APPS = ['app_user.apps.AppUserConfig', 'app_wallet']
 
 THIRD_APPS = ['phonenumber_field',
               'corsheaders',

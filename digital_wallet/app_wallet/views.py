@@ -1,17 +1,29 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.shortcuts import render, redirect
-from django.views import View
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
-class SignUpView(View):
-    def get(self, request):
-        form = UserCreationForm()
-        return render(request, 'app_wallet/signup.html', {'form': form})
+from .models import BalanceDetail, Transaction
+from .serializer import BalanceSerializer
 
-    def post(self, request):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')
-        return render(request, 'app_wallet/signup.html', {'form': form})
+
+class BalanceApiView(APIView):
+    """
+        Class where the method needs a id to return or update
+        any information
+    """
+
+    def getObject(self, id):
+        """
+            Validated if object exist
+        """
+        valor = BalanceDetail.objects.filter(
+            user_id=id).values('initial_balance', 'user__name', 'user__identification_number').first()
+
+        return (valor)
+
+    def get(self, request, id):
+        current_balance = self.getObject(id)
+        serializer = BalanceSerializer(current_balance)
+        print(serializer)
+        return Response(serializer.data, status=status.HTTP_200_OK)
