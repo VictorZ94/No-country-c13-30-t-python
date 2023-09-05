@@ -3,6 +3,7 @@ import SideNavbar from "../components/SideNavbar";
 import NavbarWithDropdown from "../components/NavBarSmall";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
+import HomeLayout from "../components/HomeLayout";
 
 const Home = () => {
   const { currentUser } = useAuth();
@@ -21,8 +22,8 @@ const Home = () => {
         <div className="h-screen hidden md:block">
             <SideNavbar />
         </div>
-        <div className="p-2">
-            <h1 className="text-3xl">This is home Layout</h1>
+        <div className="p-8 flex-auto">
+          <HomeLayout/>
         </div>
       </div>
     </div>

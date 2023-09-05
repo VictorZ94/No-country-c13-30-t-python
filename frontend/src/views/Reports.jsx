@@ -3,6 +3,7 @@ import SideNavbar from "../components/SideNavbar";
 import ReportsLayout from "../components/ReportLayout";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth";
+import NavbarWithDropdown from "../components/NavBarSmall";
 
 const Reports = () => {
   const { currentUser } = useAuth();
@@ -15,12 +16,15 @@ const Reports = () => {
   }, []);
 
   return (
-    <div className="flex">
-        <div className="h-screen">
-            <SideNavbar />
-        </div>
-        <div className="p-8 flex-auto">
-            <ReportsLayout />
+    <div className="mt-2 md:mt-0">
+        <NavbarWithDropdown />
+        <div className="flex">
+          <div className="h-screen hidden md:block">
+              <SideNavbar />
+          </div>
+          <div className="p-8 flex-auto">
+              <ReportsLayout />
+          </div>
         </div>
     </div>
   );
