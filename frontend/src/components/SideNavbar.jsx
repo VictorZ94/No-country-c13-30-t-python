@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Avatar, Sidebar } from 'flowbite-react';
-import { HiUserCircle, HiShoppingCart, HiUser } from 'react-icons/hi';
+import { HiUserCircle, HiShoppingCart, HiUser, HiOutlineLogout } from 'react-icons/hi';
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { BsFileEarmarkTextFill, BsCreditCard2BackFill } from "react-icons/bs";
 import { IoLogoUsd } from "react-icons/io";
@@ -9,9 +9,11 @@ import { AiFillLock } from "react-icons/ai";
 import LogoWallet from "../assets/icon-digital-wallet.png";
 import User1 from "../assets/avatar-example.png";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 const SideNavbar = () => {
   const [itemName, setItemName] = useState(window.location.pathname);
+  const { currentUser } = useAuth();
 
   return (
     <Sidebar className="w-80">
@@ -124,15 +126,21 @@ const SideNavbar = () => {
                 Perfil
               </Link>
             </li>
+            <li className="flex" onClick={() => setItemName("/profile")}>
+              <Link to="/login" className="nav-item text-gray-900">
+                <HiOutlineLogout className={`nav-icon-item ${itemName === "/profile" ? "text-secondary-c" : "text-gray-500"}`} />
+                Salir
+              </Link>
+            </li>
           </li>
           <li>
             <div className="flex flex-wrap gap-2">
-              <Avatar img={User1} rounded />
+              <Avatar img={currentUser.avatar || User1} rounded />
               <div>
                 <h1 className="font-bold mt-2">
-                  Rosita Rosa
+                  {`${currentUser?.first_name} ${currentUser?.last_name}`}
                 </h1>
-                <p className="text-gray-700">id: 0123456789</p>
+                <p className="text-gray-700">id: {currentUser?.identity_number}</p>
               </div>
             </div>
           </li>

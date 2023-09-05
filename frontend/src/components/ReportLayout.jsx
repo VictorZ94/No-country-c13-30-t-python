@@ -19,9 +19,7 @@ const ReportsLayout = () => {
         <Button size="xl" className="mr-3">Pagos</Button>
         <Button size="xl" outline>Retiros</Button>
       </div>
-      <div>
-        
-      </div>
+      <div></div>
     </div>
   );
 };
