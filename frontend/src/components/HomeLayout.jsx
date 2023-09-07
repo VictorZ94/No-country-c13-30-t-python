@@ -1,3 +1,4 @@
+import Wallet from "./Wallet";
 import Welcome from "./Welcome";
 
 const HomeLayout = () => {
@@ -7,6 +8,7 @@ const HomeLayout = () => {
       <div className="py-8">
         <h1 className="text-3xl font-semibold">Mi Billetera</h1>
       </div>
+      <Wallet />
     </div>
   );
 };
