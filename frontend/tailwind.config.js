@@ -13,14 +13,16 @@ export default {
           500: "#110F36"
         },
         "secondary-c": "#4F48ED",
-        "terciary-c": "#F8B40B"
+        "terciary-c": "#F8B40B",
+        "primario-light": "#CFCDFF"
       },
       backgroundColor: theme => ({
         ...theme("colors"),
         "blanco-c": "#F7F8FB",
         "placeholder-c": "#D8D7F8",
         "secondary-c": "#4F48ED",
-        "terciary-c": "#F7E01C"
+        "terciary-c": "#F7E01C",
+        "primario-light": "#CFCDFF"
       }),
       ringColor: {
         "blanco-c": "#F7F8FB",
