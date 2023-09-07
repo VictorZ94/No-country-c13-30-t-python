@@ -41,16 +41,18 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'app_wallet',
+    'app_user',
 
 ]
 
-LOCAL_APPS = ['app_user.apps.AppUserConfig', 'app_wallet']
+# LOCAL_APPS = ['app_user.apps.AppUserConfig', 'app_wallet.apps.AppWalletConfig']
 
 THIRD_APPS = ['phonenumber_field',
               'corsheaders',
               ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_APPS
 
 
 MIDDLEWARE = [
@@ -103,6 +105,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
