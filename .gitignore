@@ -1,2 +1,4 @@
+walletenv/
+my_own_backend/
 __pycache__
 db.sqlite3
