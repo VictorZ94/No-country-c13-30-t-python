@@ -1,3 +1,7 @@
+from decimal import Decimal
+from .serializer.serializer import BalanceSerializer, TransactionSerializer, ReloadSerializer
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -5,10 +9,7 @@ from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
 from rest_framework import status, permissions
 from .models import BalanceDetail, Transaction
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from .serializer.serializer import BalanceSerializer, TransactionSerializer, ReloadSerializer
-from decimal import Decimal
+from app_user.models import *
 
 
 class BalanceApiView(APIView):
@@ -44,20 +45,23 @@ class ReloadMoneyView(APIView):
     authentication_classes = (SessionAuthentication,)
 
     def post(self, request):
-        serializer = ReloadSerializer(data=request.data)
-        print("********************************")
-        print(type(request.data))
-        print(serializer)
-        if serializer.is_valid(raise_exception=True):
-            print("***************")
-            print(serializer)
-            validatedData = serializer.validated_data
-            #         transaction = Transaction(**validatedData)
-            #         transaction.save()
-            #         serializerResponse = ReloadMoneySerializer(
-            #             transaction)
-            return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        identification = request.data['identification']
+        print("")
+        try:
+            id_user = User.objects.filter(
+                identification_number=identification).values('user_id').first()['user_id']
+        except:
+            return Response({'mensaje': 'usuario no existe'}, status=status.HTTP_404_NOT_FOUND)
+
+        # current_balance = BalanceDetail.objects.filter(
+        #     user_id=id_user).values('balance').first()['balance']
+
+        new_balance = BalanceDetail.objects.get(user_id=id_user)
+        new_balance.balance = (new_balance.balance + request.data['reload'])
+        new_balance.save()
+
+        return Response(status=status.HTTP_201_CREATED)
 
 
 """

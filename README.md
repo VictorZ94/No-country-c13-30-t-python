@@ -1,6 +1,8 @@
 # c13-30-t-python
 
-## Digital Wallet
+## Digital
+
+![Alt text](image.png)
 
 APIS:
 
@@ -23,3 +25,9 @@ Realiza la insecion de datos y descuenta del saldo del usuario
 "transaction_type": "pago",
 "user": 1
 }
+
+dependencies:
+
+Django==4.2.4
+djangorestframework==3.14.0
+psycopg2==2.9.7

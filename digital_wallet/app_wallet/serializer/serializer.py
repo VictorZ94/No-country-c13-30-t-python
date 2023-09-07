@@ -21,5 +21,5 @@ class TransactionSerializer(serializers.ModelSerializer):
 
 
 class ReloadSerializer(serializers.Serializer):
-    balance = serializers.DecimalField(max_digits=10, decimal_places=2)
-    identificaction = serializers.CharField()
+    reload = serializers.DecimalField(max_digits=10, decimal_places=2)
+    identification = serializers.CharField()
