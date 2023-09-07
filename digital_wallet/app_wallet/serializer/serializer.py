@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import *
+from ..models import *
 
 
 class BalanceDetailsSerializer(serializers.ModelSerializer):
@@ -17,4 +17,9 @@ class BalanceSerializer(serializers.Serializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = '__all__'
+        fields = ['user', 'amount', 'details', 'transaction_type']
+
+
+class ReloadSerializer(serializers.Serializer):
+    balance = serializers.DecimalField(max_digits=10, decimal_places=2)
+    identificaction = serializers.CharField()
