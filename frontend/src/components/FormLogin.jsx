@@ -13,36 +13,28 @@ const FormLogin = () => {
     const { name, value } = target;
     setUserLogin({
       ...userLogin,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     setAlerError(false);
     e.preventDefault();
-    const { email, password } = userLogin;
-    const user = users.find(user => user.email === email && user.password === password);
-    if (user) {
-      const userLoggedIn = { ...user, isLoggedIn: true };
-      localStorage.setItem('user', JSON.stringify(userLoggedIn));
-      return navigate('/');
-    } else {
-      setAlerError(true);
-    }
+    // se agrega el axios
   };
 
   return (
-    <form className="flex flex-1 mx-auto max-w-md flex-col px-5 gap-4" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-1 mx-auto max-w-md flex-col px-5 gap-4"
+      onSubmit={handleSubmit}
+    >
       <div className="text-center text-primario-c-500 mb-24">
         <h1 className="text-3xl">Bienvenidos</h1>
         <p>Tus pagos de manera fácil</p>
       </div>
       <div>
         <div className="mb-2 block">
-          <Label
-            htmlFor="email"
-            value="E-mail"
-          />
+          <Label htmlFor="email" value="E-mail" />
         </div>
         <TextInput
           id="email"
@@ -56,10 +48,7 @@ const FormLogin = () => {
       </div>
       <div>
         <div className="mb-2 block">
-          <Label
-            htmlFor="password"
-            value="Contraseña"
-          />
+          <Label htmlFor="password" value="Contraseña" />
         </div>
         <TextInput
           id="password"
@@ -78,19 +67,26 @@ const FormLogin = () => {
         Submit
       </Button>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-          Todavía no tienes una cuenta? <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Registrate aquí</Link>
+        Todavía no tienes una cuenta?{" "}
+        <Link
+          to="/register"
+          className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+        >
+          Registrate aquí
+        </Link>
       </p>
       {alertError && (
         <Alert color="failure">
           <span>
-            <p>
-              Email o Contraseña incorrecto.
-            </p>
+            <p>Email o Contraseña incorrecto.</p>
           </span>
         </Alert>
       )}
       <div className="mt-16 mx-auto">
-        <img src="./src/assets/icon-digital-wallet.png" alt="logo digital wallet"/>
+        <img
+          src="./src/assets/icon-digital-wallet.png"
+          alt="logo digital wallet"
+        />
       </div>
     </form>
   );
