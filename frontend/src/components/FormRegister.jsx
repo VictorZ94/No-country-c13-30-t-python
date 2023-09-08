@@ -34,7 +34,7 @@ const FormRegister = () => {
         name: createUser.first_name,
         email: createUser.email,
         identification_number: createUser.identify,
-        phone_number: "3123014219",
+        phone_number: "3023014219",
         identification_type: "cedula",
       })
       .then((response) => {

@@ -2,7 +2,9 @@ import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import users from "../data/users.json";
 import { useState } from "react";
+import axios from "axios";
 
+const baseURL = "http://127.0.0.1:8000/login";
 const FormLogin = () => {
   const [userLogin, setUserLogin] = useState({});
   const [alertError, setAlerError] = useState(false);
@@ -16,11 +18,23 @@ const FormLogin = () => {
       [name]: value,
     });
   };
-
+  const [post, setPost] = useState(null);
   const handleSubmit = (e) => {
     setAlerError(false);
     e.preventDefault();
-    // se agrega el axios
+    axios
+      .post(baseURL, {
+        password: userLogin.password,
+        email: userLogin.email,
+      })
+      .then((response) => {
+        // Aquí puedes manejar la respuesta de la solicitud POST
+        console.log("Respuesta del servidor:", response.data, response.status);
+        setPost(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos:", error);
+      });
   };
 
   return (
