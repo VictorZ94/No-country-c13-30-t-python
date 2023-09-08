@@ -2,6 +2,7 @@ import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import users from "../data/users.json";
 import { useState } from "react";
+import ButtonOutline from "./CustomButtonOutline";
 
 const FormLogin = () => {
   const [userLogin, setUserLogin] = useState({});
@@ -73,10 +74,11 @@ const FormLogin = () => {
       </div>
       <Button
         type="submit"
-        className="bg-secondary-c enabled:hover:bg-secondary-c focus:ring-secondary-c dark:bg-secondary-c dark:enabled:hover:bg-secondary-c dark:focus:ring-secondary-c rounded-lg focus:ring-2"
+        className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
       >
         Submit
       </Button>
+      <ButtonOutline></ButtonOutline>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
           Todavía no tienes una cuenta? <Link to="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Registrate aquí</Link>
       </p>
