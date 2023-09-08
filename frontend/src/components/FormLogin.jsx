@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import users from "../data/users.json";
 import { useState } from "react";
 import axios from "axios";
+import ButtonOutline from "./CustomButtonOutline";
 
 const baseURL = "http://127.0.0.1:8000/login";
 const FormLogin = () => {
@@ -76,10 +77,11 @@ const FormLogin = () => {
       </div>
       <Button
         type="submit"
-        className="bg-secondary-c enabled:hover:bg-secondary-c focus:ring-secondary-c dark:bg-secondary-c dark:enabled:hover:bg-secondary-c dark:focus:ring-secondary-c rounded-lg focus:ring-2"
+        className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
       >
         Submit
       </Button>
+      <ButtonOutline></ButtonOutline>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
         Todavía no tienes una cuenta?{" "}
         <Link
