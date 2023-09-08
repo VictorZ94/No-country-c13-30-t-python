@@ -1,8 +1,9 @@
-import { Alert, Button, Label, TextInput } from "flowbite-react";
+import { Alert, Button, Label, Select, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HiInformationCircle } from "react-icons/hi";
 import axios from "axios";
+import countriesCode from "../data/code_country.json";
 
 // const baseURL = "http://jc123.pythonanywhere.com/register";
 const baseURL = "http://127.0.0.1:8000/register";
@@ -54,19 +55,6 @@ const FormRegister = () => {
           Crear cuenta
         </h1>
         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <div className="mb-1 block">
-              <Label htmlFor="username" value="Usuario *" />
-            </div>
-            <TextInput
-              id="username"
-              placeholder="johndoe47"
-              type="text"
-              required
-              color={"secondary-c"}
-              onChange={(e) => handleChange("username", e.target.value)}
-            />
-          </div>
           <div className="flex">
             <div className="mb-1 mr-3 flex-1">
               <Label htmlFor="first_name" value="Nombre" />
@@ -89,19 +77,69 @@ const FormRegister = () => {
               />
             </div>
           </div>
-          <div>
-            <div className="mb-1 block">
-              <Label htmlFor="identify" value="CI Identidad o pasaporte" />
+          <div className="flex">
+              <div className="mb-2 mr-3 flex-1">
+                <Label
+                  htmlFor="code_country_phone"
+                  value="Código de países"
+                />
+                <Select
+                  id="countries"
+                  required
+                  color="secondary-c"
+                  onChange={(e) => handleChange("country_code", e.target.value)}
+                >
+                  {countriesCode.map(({ country, code }) => (
+                    <option value={code} key={code}>
+                      {`(+${code}) ${country}`}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              <div className="mb-2 flex-1">
+                <Label
+                  htmlFor="phone_number"
+                  value="Número de celular"
+                />
+                <TextInput
+                  id="phone_number"
+                  placeholder="3126977415"
+                  color="secondary-c"
+                  type="number"
+                  onChange={(e) => handleChange("phone_number", e.target.value)}
+                />
+              </div>
             </div>
-            <TextInput
-              id="identify"
-              placeholder="123456789"
-              type="number"
-              min={0}
-              color={"secondary-c"}
-              onChange={(e) => handleChange("identify", e.target.value)}
-            />
-          </div>
+            <div className="flex">
+              <div className="mb-2 mr-3 flex-1">
+                <Label
+                  htmlFor="indentification_type"
+                  value="Tipo de documento"
+                />
+                <Select
+                  id="indentification_type"
+                  color="secondary-c"
+                  onChange={(e) => handleChange("indentification_type", e.target.value)}
+                >
+                  <option value="cedula">Cédula</option>
+                  <option value="pasaporte">Pasaporte</option>
+                  <option value="identidad">Identidad</option>
+                </Select>
+              </div>
+              <div className="mb-2 flex-1">
+                <Label
+                  htmlFor="id"
+                  value="Número de identificación"
+                />
+                <TextInput
+                  id="id"
+                  placeholder="1020497722"
+                  color="secondary-c"
+                  type="number"
+                  onChange={(e) => handleChange("indentification_number", e.target.value)}
+                />
+              </div>
+            </div>
           <div>
             <div className="mb-1 block">
               <Label htmlFor="email" value="E-mail *" />
@@ -159,9 +197,9 @@ const FormRegister = () => {
                       <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
                     </div>
                 </div> */}
-          <Button
+           <Button
             type="submit"
-            className="bg-secondary-c enabled:hover:bg-secondary-c focus:ring-secondary-c dark:bg-secondary-c dark:enabled:hover:bg-secondary-c dark:focus:ring-secondary-c rounded-lg focus:ring-2"
+            className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
             fullSized
           >
             Crear
