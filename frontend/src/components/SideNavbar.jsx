@@ -30,10 +30,10 @@ const SideNavbar = () => {
             <li className="flex" onClick={() => setItemName("/")}>
               <Link
                 to="/"
-                className={`nav-item ${itemName === "/" ? "text-secondary-c" : "text-gray-900"}`}
+                className={`nav-item ${itemName === "/" ? "text-secondary-c-500" : "text-gray-900"}`}
               >
               <MdAccountBalanceWallet
-                className={`nav-icon-item ${itemName === "/" ? "text-secondary-c" : "text-gray-500"}`}
+                className={`nav-icon-item ${itemName === "/" ? "text-secondary-c-500" : "text-gray-500"}`}
               />
                 Mi Billetera
               </Link>
@@ -41,10 +41,10 @@ const SideNavbar = () => {
             <li className="flex" onClick={() => setItemName("/reports")}>
               <Link
                 to="/reports"
-                className={`nav-item ${itemName === "/reports" ? "text-secondary-c" : "text-gray-900"}`}
+                className={`nav-item ${itemName === "/reports" ? "text-secondary-c-500" : "text-gray-900"}`}
               >
               <BsFileEarmarkTextFill
-                className={`nav-icon-item ${itemName === "/reports" ? "text-secondary-c" : "text-gray-500"}`}
+                className={`nav-icon-item ${itemName === "/reports" ? "text-secondary-c-500" : "text-gray-500"}`}
               />
                 Reportes
               </Link>
@@ -118,17 +118,17 @@ const SideNavbar = () => {
             <li className="flex" onClick={() => setItemName("/profile")}>
               <Link
                 to="/profile"
-                className={`nav-item ${itemName === "/profile" ? "text-secondary-c" : "text-gray-900"}`}
+                className={`nav-item ${itemName === "/profile" ? "text-secondary-c-500" : "text-gray-900"}`}
               >
               <HiUser
-                className={`nav-icon-item ${itemName === "/profile" ? "text-secondary-c" : "text-gray-500"}`}
+                className={`nav-icon-item ${itemName === "/profile" ? "text-secondary-c-500" : "text-gray-500"}`}
               />
                 Perfil
               </Link>
             </li>
             <li className="flex" onClick={() => setItemName("/profile")}>
               <Link to="/login" className="nav-item text-gray-900">
-                <HiOutlineLogout className={`nav-icon-item ${itemName === "/profile" ? "text-secondary-c" : "text-gray-500"}`} />
+                <HiOutlineLogout className={`nav-icon-item ${itemName === "/profile" ? "text-secondary-c-500" : "text-gray-500"}`} />
                 Salir
               </Link>
             </li>
