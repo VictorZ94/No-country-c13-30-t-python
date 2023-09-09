@@ -50,13 +50,13 @@ class ReloadMoneyView(APIView):
         print("")
         try:
             id_user = User.objects.filter(
-                identification_number=identification).values('user_id').first()['user_id']
+                identification_number=identification).values('id').first()['id']
         except:
             return Response({'mensaje': 'usuario no existe'}, status=status.HTTP_404_NOT_FOUND)
 
         # current_balance = BalanceDetail.objects.filter(
         #     user_id=id_user).values('balance').first()['balance']
-
+      
         new_balance = BalanceDetail.objects.get(user_id=id_user)
         new_balance.balance = (new_balance.balance + request.data['reload'])
         new_balance.save()
@@ -71,8 +71,8 @@ class ReloadMoneyView(APIView):
 
 # @method_decorator(csrf_exempt, name='dispatch')
 class PayView(APIView):
-    permission_classes = (permissions.AllowAny,)
-    authentication_classes = (SessionAuthentication,)
+    #permission_classes = (permissions.AllowAny,)
+    #authentication_classes = (SessionAuthentication,)
 
     def post(self, request, id):
 

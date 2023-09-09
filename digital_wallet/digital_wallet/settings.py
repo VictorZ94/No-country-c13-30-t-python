@@ -45,6 +45,7 @@ DJANGO_APPS = [
     'rest_framework',
     'app_wallet',
     'app_user',
+    'rest_framework_simplejwt',
 
 ]
 
@@ -97,18 +98,18 @@ WSGI_APPLICATION = 'digital_wallet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'datos.sqlite3',
     }
 }
 
 AUTH_USER_MODEL = 'app_user.User'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
