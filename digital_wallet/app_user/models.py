@@ -1,14 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from .manager import MyUserManager
 from django.core.validators import RegexValidator
+import uuid
+from .manager import MyUserManager
 #from phonenumber_field.modelfields import PhoneNumberField
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
-    #user_id = models.AutoField(primary_key=True)
+    uuid_user = models.UUIDField(default=uuid.uuid4, editable = False)
     country_code = models.CharField(max_length=4)
+    
     name = models.CharField(max_length=100)
     email = models.EmailField(
         verbose_name='email address', max_length=255,  unique=True)

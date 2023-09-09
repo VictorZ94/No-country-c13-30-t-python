@@ -39,7 +39,7 @@ class UserLoginSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "last_login", "name", "email", "identification_type", "identification_number", "phone_number", "updated_at"]
+        fields = ["id", "uuid_user", "last_login", "name", "email", "identification_type", "identification_number", "phone_number", "updated_at"]
 
         
 class CustomTokenSerializer(TokenObtainPairSerializer):
