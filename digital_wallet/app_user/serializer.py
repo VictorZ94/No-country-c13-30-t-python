@@ -18,7 +18,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             identification_type=clean_data['identification_type'],
             identification_number=clean_data['identification_number'],
             email=clean_data['email'],
-            phone_number=clean_data['phone_number']
+            phone_number=clean_data['phone_number'],
+            country_code=clean_data['country_code']
         )
         user_obj.save()
         return user_obj
