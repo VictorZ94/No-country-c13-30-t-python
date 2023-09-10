@@ -6,6 +6,8 @@ import Register from '../views/Register';
 import Home from '../views/Home';
 import Reports from '../views/Reports';
 import Profile from '../views/Profile';
+import Security from '../views/Security';
+import Balance from '../views/Balance';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />
+  },
+  {
+    path: "/security",
+    element: <Security />
+  },
+  {
+    path: "/charge_balance",
+    element: <Balance />
   }
 ]);
 

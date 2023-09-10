@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { Avatar, Sidebar } from 'flowbite-react';
-import { HiUserCircle, HiShoppingCart, HiUser, HiOutlineLogout } from 'react-icons/hi';
+import { HiUser, HiOutlineLogout } from 'react-icons/hi';
 import { MdAccountBalanceWallet } from "react-icons/md";
-import { BsFileEarmarkTextFill, BsCreditCard2BackFill } from "react-icons/bs";
+import { BsFileEarmarkTextFill } from "react-icons/bs";
 import { IoLogoUsd } from "react-icons/io";
 import { AiFillLock } from "react-icons/ai";
 // @images
@@ -12,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
 
 const SideNavbar = () => {
-  const [itemName, setItemName] = useState(window.location.pathname);
+  const itemName = window.location.pathname;
   const { currentUser } = useAuth();
 
   return (
@@ -27,7 +26,7 @@ const SideNavbar = () => {
       <Sidebar.Items className="px-4">
         <Sidebar.ItemGroup className="flex flex-col h-[80vh] justify-between">
           <li className="flex flex-col gap-y-2">
-            <li className="flex" onClick={() => setItemName("/")}>
+            <li className="flex">
               <Link
                 to="/"
                 className={`nav-item ${itemName === "/" ? "text-secondary-c-500" : "text-gray-900"}`}
@@ -38,7 +37,7 @@ const SideNavbar = () => {
                 Mi Billetera
               </Link>
             </li>
-            <li className="flex" onClick={() => setItemName("/reports")}>
+            <li className="flex">
               <Link
                 to="/reports"
                 className={`nav-item ${itemName === "/reports" ? "text-secondary-c-500" : "text-gray-900"}`}
@@ -51,71 +50,27 @@ const SideNavbar = () => {
             </li>
             <li className="flex">
               <Link
-                to="/"
-                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                to="/charge_balance"
+                className={`nav-item ${itemName === "/charge_balance" ? "text-secondary-c-500" : "text-gray-900"}`}
               >
               <IoLogoUsd
-                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                className={`nav-icon-item ${itemName === "/charge_balance" ? "text-secondary-c-500" : "text-gray-500"}`}
               />
                 Recarga de fondos
               </Link>
             </li>
             <li className="flex">
               <Link
-                to="/"
-                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-              >
-              <BsCreditCard2BackFill
-                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-              />
-                Pagos y compras
-              </Link>
-            </li>
-            <li className="flex">
-              <Link
-                to="/"
-                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-              >
-              <HiShoppingCart
-                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-              />
-                Promociones y Ofertas
-              </Link>
-            </li>
-            <li className="flex">
-              <Link
-                to="/"
-                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                to="/security"
+                className={`nav-item ${itemName === "/security" ? "text-secondary-c-500" : "text-gray-900"}`}
               >
               <AiFillLock
-                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                className={`nav-icon-item ${itemName === "/security" ? "text-secondary-c-500" : "text-gray-500"}`}
               />
                 Seguridad
               </Link>
             </li>
             <li className="flex">
-              <Link
-                to="/"
-                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-              >
-              <HiUserCircle
-                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-              />
-                Soporte al cliente
-              </Link>
-            </li>
-            <li className="flex">
-              <Link
-                to="/"
-                className="flex flex-1 items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-              >
-              <HiUserCircle
-                className="h-6 w-6 mr-3 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-              />
-                Terminos y condiciones
-              </Link>
-            </li>
-            <li className="flex" onClick={() => setItemName("/profile")}>
               <Link
                 to="/profile"
                 className={`nav-item ${itemName === "/profile" ? "text-secondary-c-500" : "text-gray-900"}`}
@@ -126,9 +81,9 @@ const SideNavbar = () => {
                 Perfil
               </Link>
             </li>
-            <li className="flex" onClick={() => setItemName("/profile")}>
+            <li className="flex">
               <Link to="/login" className="nav-item text-gray-900">
-                <HiOutlineLogout className={`nav-icon-item ${itemName === "/profile" ? "text-secondary-c-500" : "text-gray-500"}`} />
+                <HiOutlineLogout className={`nav-icon-item ${itemName === "/login" ? "text-secondary-c-500" : "text-gray-500"}`} />
                 Salir
               </Link>
             </li>
