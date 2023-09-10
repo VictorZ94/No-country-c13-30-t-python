@@ -113,35 +113,12 @@ const FormProfile = () => {
 
             <div className="flex">
             </div>
-          <Button
-            type="submit"
-            className="bg-secondary-c enabled:hover:bg-secondary-c focus:ring-secondary-c dark:bg-secondary-c dark:enabled:hover:bg-secondary-c dark:focus:ring-secondary-c rounded-lg focus:ring-2"
-          >
-            Actualizar
-          </Button>
-        </form>
-      </div>
-      <div className="max-w-xl mt-4">
-        <div className="text-primario-c-500 mb-4">
-          <h1 className="text-3xl">Cambiar Contraseña</h1>
-        </div>
-        <form className="flex flex-1 mx-auto flex-col gap-4">
-          <div className="max-w-sm">
-            <div className="mb-2 block">
-              <Label
-                htmlFor="password"
-                value="password"
-              />
-            </div>
-            <TextInput
-              id="password"
-              required
-              shadow
-              placeholder="Nueva Contraseña"
-              type="password"
-              color="secondary-c"
-            />
-          </div>
+            <Button
+              type="submit"
+              className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
+            >
+              Actualizar
+            </Button>
         </form>
       </div>
       {/* <div className="mt-16 mx-auto">
