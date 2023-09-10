@@ -26,17 +26,20 @@ const FormWithdraw = () => {
               value="Cantidad"
             />
           </div>
-          <TextInput
+          <input
             id="cantity"
             name="cantity"
             placeholder="0.00 USD"
             required
+            step=".01"
+            min={0}
+            className="w-full rounded-lg text-sm p-2.5"
+            max={1000000}
             type="number"
-            color={"secondary-c"}
             onChange={(e) => handleChange("cantity", e.target.value)}
           />
         </div>
-        <legend className="text-sm font-medium mb-4">
+        <legend className="text-md font-medium mb-4">
           Datos
         </legend>
         <div className="mb-4">
@@ -51,6 +54,7 @@ const FormWithdraw = () => {
             name="cedula"
             placeholder="1241597554"
             required
+            min={0}
             type="number"
             color={"secondary-c"}
             onChange={(e) => handleChange("cedula", e.target.value)}
