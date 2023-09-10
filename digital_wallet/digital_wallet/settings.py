@@ -43,7 +43,7 @@ DJANGO_APPS = [
     'rest_framework',
     'app_wallet',
     'app_user',
-
+    'app_banking_correspondent',
 ]
 
 # LOCAL_APPS = ['app_user.apps.AppUserConfig', 'app_wallet.apps.AppWalletConfig']
@@ -72,7 +72,7 @@ ROOT_URLCONF = 'digital_wallet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'app_wallet', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'app_banking_correspondent', 'templates')],
 
         'APP_DIRS': True,
         'OPTIONS': {
@@ -86,6 +86,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'digital_wallet.wsgi.application'
 
 
@@ -95,7 +96,7 @@ WSGI_APPLICATION = 'digital_wallet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db2.sqlite3',
     }
 }
 

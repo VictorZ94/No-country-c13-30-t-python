@@ -1,5 +1,5 @@
 from decimal import Decimal
-from .serializer.serializer import BalanceSerializer, TransactionSerializer, ReloadSerializer
+from .serializer.serializer import *
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
@@ -10,6 +10,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework import status, permissions
 from .models import BalanceDetail, Transaction
 from app_user.models import *
+import random
 
 
 class BalanceApiView(APIView):
@@ -101,3 +102,46 @@ class PayView(APIView):
             else:
                 return Response({"mensaje": "saldo insuficiente"}, status=status.HTTP_406_NOT_ACCEPTABLE)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Paywithdrawal(APIView):
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = (SessionAuthentication,)
+
+    def post(self, request):
+        """
+        JSON de entrada:
+        {
+            "identification_number": "123456789",
+            "value": 20000
+        }
+        """
+
+        code = random.randint(100000, 999999)
+
+        data2 = request.data
+        data2["code_validation"] = str(code)
+        print(data2)
+
+        identification_number = data2["identification_number"]
+
+        try:
+            # Intenta buscar el registro existente por identification_number
+            withdrawal_m = withdrawal.objects.get(identification_number=identification_number)
+            
+            # Si el registro existe, actualiza los campos
+            withdrawal_m.code_validation = str(code)
+            withdrawal_m.value = data2["value"]
+            withdrawal_m.save()
+
+            return Response({"mensaje": withdrawal_m.code_validation}, status=status.HTTP_200_OK)
+
+        except withdrawal.DoesNotExist:
+            # Si no se encuentra el registro, crea uno nuevo
+            serializer = withdrawalSerializer(data=data2)
+
+            if serializer.is_valid():
+                withdrawal_m = serializer.save()
+                return Response({"mensaje": withdrawal_m.code_validation}, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

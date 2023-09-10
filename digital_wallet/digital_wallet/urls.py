@@ -27,6 +27,7 @@ urlpatterns = [
     # Incluye las URLs de la aplicación "digital_wallet"
     path('', include('app_wallet.urls')),
     re_path("", include('app_user.urls')),
+    re_path("", include('app_banking_correspondent.urls')),
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

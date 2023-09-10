@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Corresponsal bancario</title>
+    <style>
+        /* Estilo para centrar elementos */
+        body {
+            text-align: center; /* Centra el contenido horizontalmente */
+        }
+
+        h1 {
+            margin-top: 50px; /* Espacio superior para el título */
+        }
+
+        form {
+            display: inline-block; /* Hace que el formulario sea un bloque en línea */
+            text-align: left; /* Centra el contenido del formulario */
+            margin: 0 auto; /* Centra el formulario horizontalmente */
+            padding: 20px; /* Agrega un poco de espacio alrededor del formulario */
+            border: 1px solid #ccc; /* Agrega un borde para destacar el formulario */
+            border-radius: 5px; /* Redondea los bordes del formulario */
+        }
+
+        /* Estilo para los elementos del formulario */
+        form label, form input, form button {
+            display: block; /* Hace que los elementos sean bloques */
+            margin-bottom: 10px; /* Agrega espacio entre los elementos */
+            width: 100%; /* Ajusta el ancho al 100% del formulario */
+        }
+
+        form button {
+            margin-top: 20px; /* Agrega espacio superior al botón */
+        }
+    </style>
+</head>
+<body>
+    <h1>Corresponsal Bancario</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="{{ form.cedula.id_for_label }}">Cédula:</label>
+        {{ form.cedula }}
+        <label for="{{ form.codigo_validacion.id_for_label }}">Código de Validación:</label>
+        {{ form.codigo_validacion }}
+        <button type="submit">Retirar</button>
+    </form>
+</body>
+</html>
