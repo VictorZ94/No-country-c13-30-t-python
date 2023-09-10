@@ -6,8 +6,17 @@ from ..serializer import UserSerializer
 from ..models import *
 
 
+"""
+  The Userview class is an API view that retrieves a user object by its ID and returns it in serialized form.
+"""
 class Userview(APIView):
 
-    def get(self, request):
-        serializer = UserSerializer(request.user)
+    def get(self, request, id):
+        try:
+          data = User.objects.get(id = id)
+        except:
+          return Response({'user': "No existe este usuario"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = UserSerializer(data)
         return Response({'user': serializer.data}, status=status.HTTP_200_OK)
+       

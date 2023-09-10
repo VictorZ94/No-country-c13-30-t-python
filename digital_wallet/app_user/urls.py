@@ -11,5 +11,5 @@ urlpatterns = [
     path('register', UserRegister.as_view(), name='register'),
     path('login', UserLogin.as_view(), name='login'),
     path('logout', UserLogout.as_view(), name='logout'),
-    path('user', Userview.as_view(), name='user')
+    path('user/<int:id>', Userview.as_view(), name='user')
 ]
