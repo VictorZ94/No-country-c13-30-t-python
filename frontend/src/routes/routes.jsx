@@ -8,6 +8,7 @@ import Reports from '../views/Reports';
 import Profile from '../views/Profile';
 import Security from '../views/Security';
 import Balance from '../views/Balance';
+import Logout from '../views/Logout';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/charge_balance",
     element: <Balance />
+  },
+  {
+    path: "/logout",
+    element: <Logout />
   }
 ]);
 

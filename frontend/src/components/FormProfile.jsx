@@ -1,9 +1,19 @@
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 import countriesCode from "../data/code_country.json";
+import { useEffect } from "react";
+import { client } from "../utils/constants";
 
 const FormProfile = () => {
-  console.log(countriesCode);
+  useEffect(() => {
+    client.get("/user", { withCredentials: true })
+      .then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <div className="max-w-3xl">

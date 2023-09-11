@@ -82,8 +82,8 @@ const SideNavbar = () => {
               </Link>
             </li>
             <li className="flex">
-              <Link to="/login" className="nav-item text-gray-900">
-                <HiOutlineLogout className={`nav-icon-item ${itemName === "/login" ? "text-secondary-c-500" : "text-gray-500"}`} />
+              <Link to="/logout" className="nav-item text-gray-900">
+                <HiOutlineLogout className={`nav-icon-item ${itemName === "/logout" ? "text-secondary-c-500" : "text-gray-500"}`} />
                 Salir
               </Link>
             </li>
