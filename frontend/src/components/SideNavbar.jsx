@@ -93,9 +93,9 @@ const SideNavbar = () => {
               <Avatar img={currentUser?.avatar || User1} rounded />
               <div>
                 <h1 className="font-bold mt-2">
-                  {`${currentUser?.first_name} ${currentUser?.last_name}`}
+                  {`${currentUser?.user?.name}`}
                 </h1>
-                <p className="text-gray-700">id: {currentUser?.identity_number}</p>
+                <p className="text-gray-700 text-sm">id: {currentUser?.user?.uuid_user.split("-")[0]}</p>
               </div>
             </div>
           </li>

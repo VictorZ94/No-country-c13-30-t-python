@@ -1,14 +1,17 @@
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 import countriesCode from "../data/code_country.json";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { client } from "../utils/constants";
 
 const FormProfile = () => {
+  const [userData, setUserData] = useState({});
+
   useEffect(() => {
-    client.get("/user", { withCredentials: true })
+    client.get("/user/1", { withCredentials: true })
       .then(res => {
         console.log(res);
+        setUserData(res);
       }).catch(err => {
         console.log(err);
       });
@@ -33,6 +36,7 @@ const FormProfile = () => {
                   required
                   color={"secondary-c"}
                   type="text"
+                  value={userData?.name}
                 />
               </div>
               <div className="mb-2 flex-1">

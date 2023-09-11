@@ -1,14 +1,24 @@
 import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonOutline from "./CustomButtonOutline";
 import { client } from "../utils/constants";
+import { useAuth } from "../context/auth";
 
 const FormLogin = () => {
   const [userLogin, setUserLogin] = useState({});
   const [alertError, setAlerError] = useState(false);
+  const { setCurrentUser } = useAuth();
   // eslint-disable-next-line no-unused-vars
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("useEffect Login", currentUser?.isAuthenticated);
+    if (currentUser?.isAuthenticated) {
+      return navigate('/');
+    }
+  }, []);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -21,19 +31,6 @@ const FormLogin = () => {
   const handleSubmit = (e) => {
     setAlerError(false);
     e.preventDefault();
-    // axios
-    //   .post(baseURL, {
-    //     password: userLogin.password,
-    //     email: userLogin.email,
-    //   })
-    //   .then((response) => {
-    //     // Aquí puedes manejar la respuesta de la solicitud POST
-    //     console.log("Respuesta del servidor:", response.data, response.status);
-    //     setPost(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error al enviar datos:", error);
-    //   });
     client.post(
       "/login",
       {
@@ -41,7 +38,10 @@ const FormLogin = () => {
         password: userLogin.password
       }
     ).then(res => {
-      console.log(res);
+      const userLoggedIn = { ...res.data, avatar: "https://i.pravatar.cc/150", isAuthenticated: true };
+      setCurrentUser(userLoggedIn);
+      localStorage.setItem('user', JSON.stringify(userLoggedIn));
+      return navigate('/');
     }).catch(err => {
       console.log(err);
       setAlerError(true);

@@ -32,7 +32,7 @@ const FormRegister = () => {
       "/register",
       {
         password: createUser.password,
-        name: createUser.first_name,
+        name: `${createUser.first_name} ${createUser.last_name}`,
         email: createUser.email,
         identification_number: createUser.indentification_number,
         phone_number: createUser.phone_number,

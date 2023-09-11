@@ -6,7 +6,9 @@ import router from "./routes/routes";
 import { AuthContext } from "./context/auth";
 
 export function App () {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({
+    isAuthenticated: false
+  });
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));

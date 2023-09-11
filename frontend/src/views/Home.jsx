@@ -9,11 +9,11 @@ const Home = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (currentUser === null || currentUser === undefined || currentUser === {}) {
-  //     return navigate('/login');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!currentUser?.isAuthenticated) {
+      return navigate('/login');
+    }
+  }, []);
 
   return (
     <div className="mt-2 md:mt-0">
