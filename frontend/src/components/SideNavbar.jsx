@@ -1,3 +1,4 @@
+/* eslint-disable import/no-absolute-path */
 import { Avatar, Sidebar } from 'flowbite-react';
 import { HiUser, HiOutlineLogout } from 'react-icons/hi';
 import { MdAccountBalanceWallet } from "react-icons/md";
@@ -5,8 +6,8 @@ import { BsFileEarmarkTextFill } from "react-icons/bs";
 import { IoLogoUsd } from "react-icons/io";
 import { AiFillLock } from "react-icons/ai";
 // @images
-import LogoWallet from "../assets/icon-digital-wallet.png";
-import User1 from "../assets/avatar-example.png";
+import LogoWallet from "/assets/icon-digital-wallet.png";
+import User1 from "/assets/avatar-example.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
 
