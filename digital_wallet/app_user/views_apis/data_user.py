@@ -5,7 +5,6 @@ from app_user.serializer import UserSerializer
 from ..serializer import UserSerializer
 from ..models import *
 
-
 class Userview(APIView):
 
     def get(self, request):

@@ -23,3 +23,15 @@ class TransactionSerializer(serializers.ModelSerializer):
 class ReloadSerializer(serializers.Serializer):
     reload = serializers.DecimalField(max_digits=10, decimal_places=2)
     identification = serializers.CharField()
+
+
+class withdrawalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = withdrawal
+        fields = ['identification_number', 'value']
+
+
+class withdrawalBalanceDetailSerializer(serializers.Serializer):
+    identification_number = serializers.CharField()
+    code_validation = serializers.CharField()
+
