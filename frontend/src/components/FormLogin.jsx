@@ -38,7 +38,7 @@ const FormLogin = () => {
         password: userLogin.password
       }
     ).then(res => {
-      const userLoggedIn = { ...res.data, avatar: "https://i.pravatar.cc/150", isAuthenticated: true };
+      const userLoggedIn = { ...res.data, isAuthenticated: true };
       setCurrentUser(userLoggedIn);
       localStorage.setItem('user', JSON.stringify(userLoggedIn));
       return navigate('/');
