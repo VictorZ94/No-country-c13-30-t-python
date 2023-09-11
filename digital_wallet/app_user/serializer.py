@@ -8,6 +8,17 @@ UserModel = get_user_model()
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
+    """ejemplo json
+    {
+    "name": "Maria Antonieta",
+    "password": "mypassword",
+    "identification_type": "cc",
+    "identification_number": "123456789",
+    "email": "ma@ejemplo.com",
+    "phone_number": "32456425432",
+    "country_code": "57"
+    }
+    """
     class Meta:
         model = UserModel
         fields = '__all__'
