@@ -10,6 +10,7 @@ from ..models import *
   The Userview class is an API view that retrieves a user object by its ID and returns it in serialized form.
 """
 class Userview(APIView):
+  
 
     def get(self, request, id):
         try:
