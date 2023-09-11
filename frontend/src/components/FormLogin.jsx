@@ -111,7 +111,7 @@ const FormLogin = () => {
         </Alert>
       )}
       <div className="mt-16 mx-auto">
-        <img src="./src/assets/icon-digital-wallet.png" alt="logo digital wallet"/>
+        <img src="/assets/icon-digital-wallet.png" alt="logo digital wallet"/>
       </div>
     </form>
   );
