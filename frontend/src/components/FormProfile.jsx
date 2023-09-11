@@ -9,13 +9,19 @@ const FormProfile = () => {
 
   useEffect(() => {
     client.get("/user/1", { withCredentials: true })
-      .then(res => {
-        console.log(res);
-        setUserData(res);
+      .then(({ data }) => {
+        setUserData(data?.user);
       }).catch(err => {
         console.log(err);
       });
   }, []);
+
+  const handleChange = (name, value) => {
+    setUserData({
+      ...userData,
+      [name]: value
+    });
+  };
 
   return (
     <>
@@ -37,6 +43,7 @@ const FormProfile = () => {
                   color={"secondary-c"}
                   type="text"
                   value={userData?.name}
+                  onChange={(e) => handleChange("name", e.target.value)}
                 />
               </div>
               <div className="mb-2 flex-1">
@@ -62,7 +69,10 @@ const FormProfile = () => {
                 placeholder="name@digitalwallet.com"
                 type="email"
                 rightIcon={HiMail}
+                disabled
                 color={"secondary-c"}
+                value={userData?.email}
+                onChange={(e) => handleChange("email", e.target.value)}
               />
             </div>
             <div className="flex">
@@ -93,6 +103,8 @@ const FormProfile = () => {
                   placeholder="3126977415"
                   color="secondary-c"
                   type="number"
+                  value={userData?.phone_number}
+                onChange={(e) => handleChange("phone_number", e.target.value)}
                 />
               </div>
             </div>
@@ -121,6 +133,8 @@ const FormProfile = () => {
                   placeholder="1020497722"
                   color="secondary-c"
                   type="number"
+                  value={userData?.identification_number}
+                onChange={(e) => handleChange("identification_number", e.target.value)}
                 />
               </div>
             </div>
