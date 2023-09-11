@@ -13,8 +13,20 @@ const ReportsLayout = () => {
         <p className="text-xl py-2">Conoce paso a paso las transacciones que realizas</p>
       </div>
       <div className="flex">
-        <Button size="xl" className="mr-3">Pagos</Button>
-        <Button size="xl" outline>Retiros</Button>
+        <Button
+          size="xl"
+          type="submit"
+          className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2 mr-3"
+        >
+          Pagos
+        </Button>
+        <Button
+          size="xl"
+          type="submit"
+          className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
+        >
+          Retiros
+        </Button>
       </div>
       <Table striped className="mt-5">
       <Table.Head>

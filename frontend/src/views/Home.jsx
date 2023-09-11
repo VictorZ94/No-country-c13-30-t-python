@@ -10,7 +10,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentUser === null || currentUser === undefined || currentUser === {}) {
+    if (!currentUser?.isAuthenticated) {
       return navigate('/login');
     }
   }, []);

@@ -11,12 +11,12 @@ const Reports = () => {
 
   console.log("currentUser", currentUser);
 
-  useEffect(() => {
-    if (currentUser === null || currentUser === undefined || currentUser === {}) {
-      console.log("Si entré aquí y está mal!");
-      return navigate('/login');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (currentUser === null || currentUser === undefined || currentUser === {}) {
+  //     console.log("Si entré aquí y está mal!");
+  //     return navigate('/login');
+  //   }
+  // }, []);
 
   return (
     <div className="mt-2 md:mt-0">

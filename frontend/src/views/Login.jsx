@@ -7,17 +7,17 @@ const Login = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (currentUser) {
-      return navigate('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     return navigate('/');
+  //   }
+  // }, []);
 
   return (
       <div className="h-screen flex">
         <div className="h-full hidden md:block flex-1 bg-blanco-c">
           <span className="flex h-full items-center justify-center">
-            <img src="./src/assets/login-img.png" alt="brand login" />
+            <img src="assets/login-img.png" alt="brand login" />
           </span>
         </div>
         <div className="flex-1">

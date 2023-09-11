@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
 from django.core.exceptions import ValidationError
-
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import *
 
 UserModel = get_user_model()
@@ -18,7 +18,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             identification_type=clean_data['identification_type'],
             identification_number=clean_data['identification_number'],
             email=clean_data['email'],
-            phone_number=clean_data['phone_number']
+            phone_number=clean_data['phone_number'],
+            country_code=clean_data['country_code']
         )
         user_obj.save()
         return user_obj
@@ -39,4 +40,8 @@ class UserLoginSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["user_id", "last_login", "name", "email", "identification_type", "identification_number", "phone_number", "updated_at"]
+        fields = ["id", "uuid_user", "last_login", "name", "email", "identification_type", "identification_number", "phone_number", "updated_at"]
+
+        
+class CustomTokenSerializer(TokenObtainPairSerializer):
+  pass

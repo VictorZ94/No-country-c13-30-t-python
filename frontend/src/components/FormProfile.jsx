@@ -1,9 +1,29 @@
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 import countriesCode from "../data/code_country.json";
+import { useEffect, useState } from "react";
+import { client, token } from "../utils/constants";
 
 const FormProfile = () => {
-  console.log(countriesCode);
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    client.get("/user/1", token)
+      .then(({ data }) => {
+        console.log(data);
+        setUserData(data?.user);
+      }).catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleChange = (name, value) => {
+    setUserData({
+      ...userData,
+      [name]: value
+    });
+  };
+
   return (
     <>
       <div className="max-w-3xl">
@@ -23,6 +43,8 @@ const FormProfile = () => {
                   required
                   color={"secondary-c"}
                   type="text"
+                  value={userData?.name}
+                  onChange={(e) => handleChange("name", e.target.value)}
                 />
               </div>
               <div className="mb-2 flex-1">
@@ -48,7 +70,10 @@ const FormProfile = () => {
                 placeholder="name@digitalwallet.com"
                 type="email"
                 rightIcon={HiMail}
+                disabled
                 color={"secondary-c"}
+                value={userData?.email}
+                onChange={(e) => handleChange("email", e.target.value)}
               />
             </div>
             <div className="flex">
@@ -79,6 +104,8 @@ const FormProfile = () => {
                   placeholder="3126977415"
                   color="secondary-c"
                   type="number"
+                  value={userData?.phone_number}
+                onChange={(e) => handleChange("phone_number", e.target.value)}
                 />
               </div>
             </div>
@@ -107,41 +134,20 @@ const FormProfile = () => {
                   placeholder="1020497722"
                   color="secondary-c"
                   type="number"
+                  value={userData?.identification_number}
+                onChange={(e) => handleChange("identification_number", e.target.value)}
                 />
               </div>
             </div>
 
             <div className="flex">
             </div>
-          <Button
-            type="submit"
-            className="bg-secondary-c enabled:hover:bg-secondary-c focus:ring-secondary-c dark:bg-secondary-c dark:enabled:hover:bg-secondary-c dark:focus:ring-secondary-c rounded-lg focus:ring-2"
-          >
-            Actualizar
-          </Button>
-        </form>
-      </div>
-      <div className="max-w-xl mt-4">
-        <div className="text-primario-c-500 mb-4">
-          <h1 className="text-3xl">Cambiar Contraseña</h1>
-        </div>
-        <form className="flex flex-1 mx-auto flex-col gap-4">
-          <div className="max-w-sm">
-            <div className="mb-2 block">
-              <Label
-                htmlFor="password"
-                value="password"
-              />
-            </div>
-            <TextInput
-              id="password"
-              required
-              shadow
-              placeholder="Nueva Contraseña"
-              type="password"
-              color="secondary-c"
-            />
-          </div>
+            <Button
+              type="submit"
+              className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
+            >
+              Actualizar
+            </Button>
         </form>
       </div>
       {/* <div className="mt-16 mx-auto">
