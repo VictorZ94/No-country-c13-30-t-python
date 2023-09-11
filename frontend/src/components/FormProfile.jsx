@@ -1,21 +1,20 @@
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
 import countriesCode from "../data/code_country.json";
-import { useEffect, useState } from "react";
-import { client, token } from "../utils/constants";
+import { useState } from "react";
 
-const FormProfile = () => {
-  const [userData, setUserData] = useState({});
+const FormProfile = ({ data }) => {
+  const [userData, setUserData] = useState(data);
 
-  useEffect(() => {
-    client.get("/user/1", token)
-      .then(({ data }) => {
-        console.log(data);
-        setUserData(data?.user);
-      }).catch(err => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   client.get("/user/1", token)
+  //     .then(({ data }) => {
+  //       console.log(data);
+  //       setUserData(data?.user);
+  //     }).catch(err => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const handleChange = (name, value) => {
     setUserData({

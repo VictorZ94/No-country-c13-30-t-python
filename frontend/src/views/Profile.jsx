@@ -25,7 +25,7 @@ const Profile = () => {
             <SideNavbar />
         </div>
         <div className="p-8 flex-auto">
-        <FormProfile />
+        <FormProfile data={currentUser?.user}/>
         </div>
     </div>
   );
