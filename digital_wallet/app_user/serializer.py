@@ -52,6 +52,11 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "uuid_user", "last_login", "name", "email", "identification_type", "identification_number", "phone_number", "updated_at"]
+        
+class UpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["name", "email", "identification_type","identification_number", "phone_number"]
 
         
 class CustomTokenSerializer(TokenObtainPairSerializer):
