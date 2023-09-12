@@ -1,14 +1,15 @@
 import { useEffect } from "react";
-import { client } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 const Logout = () => {
+  const { setCurrentUser } = useAuth();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    client.get("/logout", { withCredentials: true })
-      .then(res => {
-        console.log(res);
-      }).catch(err => {
-        console.log(err);
-      });
+    setCurrentUser({});
+    localStorage.removeItem("user");
+    return navigate('/login');
   }, []);
 };
 
