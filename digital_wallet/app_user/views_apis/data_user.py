@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status, permissions
 from app_user.serializer import UserSerializer
 from ..serializer import UserSerializer
 from ..models import *
@@ -20,4 +21,3 @@ class Userview(APIView):
         
         serializer = UserSerializer(data)
         return Response({'user': serializer.data}, status=status.HTTP_200_OK)
-       

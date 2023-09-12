@@ -1,41 +1,51 @@
 import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
-import users from "../data/users.json";
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import ButtonOutline from "./CustomButtonOutline";
+import { client } from "../utils/constants";
+import { useAuth } from "../context/auth";
 
-const baseURL = "http://127.0.0.1:8000/login";
 const FormLogin = () => {
   const [userLogin, setUserLogin] = useState({});
   const [alertError, setAlerError] = useState(false);
+  const { setCurrentUser } = useAuth();
   // eslint-disable-next-line no-unused-vars
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("useEffect Login", currentUser?.isAuthenticated);
+    if (currentUser?.isAuthenticated) {
+      return navigate('/');
+    }
+  }, []);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setUserLogin({
       ...userLogin,
-      [name]: value,
+      [name]: value
     });
   };
-  const [post, setPost] = useState(null);
+
   const handleSubmit = (e) => {
     setAlerError(false);
     e.preventDefault();
-    axios
-      .post(baseURL, {
-        password: userLogin.password,
+    client.post(
+      "/login",
+      {
         email: userLogin.email,
-      })
-      .then((response) => {
-        // Aquí puedes manejar la respuesta de la solicitud POST
-        console.log("Respuesta del servidor:", response.data, response.status);
-        setPost(response.data);
-      })
-      .catch((error) => {
-        console.error("Error al enviar datos:", error);
-      });
+        password: userLogin.password
+      }
+    ).then(res => {
+      const userLoggedIn = { ...res.data, isAuthenticated: true };
+      setCurrentUser(userLoggedIn);
+      localStorage.setItem('user', JSON.stringify(userLoggedIn));
+      return navigate('/');
+    }).catch(err => {
+      console.log(err);
+      setAlerError(true);
+    });
   };
 
   return (
@@ -83,26 +93,25 @@ const FormLogin = () => {
       </Button>
       <ButtonOutline></ButtonOutline>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-        Todavía no tienes una cuenta?{" "}
-        <Link
-          to="/register"
-          className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-        >
-          Registrate aquí
-        </Link>
+          Todavía no tienes una cuenta?
+          <Link
+            to="/register"
+            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+          >
+            Registrate aquí
+          </Link>
       </p>
       {alertError && (
         <Alert color="failure">
           <span>
-            <p>Email o Contraseña incorrecto.</p>
+            <p>
+              Email o Contraseña incorrecto.
+            </p>
           </span>
         </Alert>
       )}
       <div className="mt-16 mx-auto">
-        <img
-          src="./src/assets/icon-digital-wallet.png"
-          alt="logo digital wallet"
-        />
+        <img src="/assets/icon-digital-wallet.png" alt="logo digital wallet"/>
       </div>
     </form>
   );

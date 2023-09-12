@@ -2,51 +2,54 @@ import { Alert, Button, Label, Select, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HiInformationCircle } from "react-icons/hi";
-import axios from "axios";
 import countriesCode from "../data/code_country.json";
 
-// const baseURL = "http://jc123.pythonanywhere.com/register";
-const baseURL = "http://127.0.0.1:8000/register";
+// @constants
+import { client } from "../utils/constants";
+
 const FormRegister = () => {
-  const [createUser, setCreateUser] = useState({});
-  const [checkPassword, setCheckPassword] = useState(false);
+  const [createUser, setCreateUser] = useState({
+    indentification_type: "cedula",
+    country_code: 57
+  });
+  const [userCreated, setUserCreated] = useState(false);
+  const [error, setError] = useState(false);
+  const [processing, setProcessing] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (name, value) => {
     setCreateUser({
       ...createUser,
-      [name]: value,
+      [name]: value
     });
   };
-  const [post, setPost] = useState(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(createUser);
-    // se agrega el axios para el envio de la informacion,
-    // manipulo lo q quiera enviar en un nuevo objeto
-    // instalar axios
-    console.log(createUser.first_name);
-    console.log(createUser.indentification_number);
-    console.log(createUser.identification_type);
+    setProcessing(true);
 
-    axios
-      .post(baseURL, {
+    client.post(
+      "/register",
+      {
         password: createUser.password,
-        name: createUser.first_name,
+        name: `${createUser.first_name} ${createUser.last_name}`,
         email: createUser.email,
         identification_number: createUser.indentification_number,
         phone_number: createUser.phone_number,
         country_code: createUser.country_code,
-        identification_type: createUser.indentification_type,
-      })
-      .then((response) => {
-        // Aquí puedes manejar la respuesta de la solicitud POST
-        console.log("Respuesta del servidor:", response.data, response.status);
-        setPost(response.data);
-      })
-      .catch((error) => {
-        console.error("Error al enviar datos:", error);
-      });
+        identification_type: createUser.indentification_type
+      }
+    ).then(res => {
+      setUserCreated(true);
+      console.log(res.statusText);
+      setTimeout(() => {
+        return navigate("/login");
+      }, 5000);
+    }).catch(err => {
+      setError(true);
+      console.log(err);
+    });
+    setProcessing(false);
   };
 
   return (
@@ -82,13 +85,14 @@ const FormRegister = () => {
             <div className="mb-2 mr-3 flex-1">
               <Label htmlFor="code_country_phone" value="Código de países" />
               <Select
-                id="countries"
+                id="code_country_phone"
                 required
+                name="code_country_phone"
                 color="secondary-c"
                 onChange={(e) => handleChange("country_code", e.target.value)}
               >
                 {countriesCode.map(({ country, code }) => (
-                  <option value={code} key={code}>
+                  <option value={code} key={code} selected={code === 57}>
                     {`(+${code}) ${country}`}
                   </option>
                 ))}
@@ -177,30 +181,24 @@ const FormRegister = () => {
               }
             />
           </div>
-          {/* <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="terms"
-                        aria-describedby="terms"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
-                    </div>
-                </div> */}
           <Button
             type="submit"
             className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
             fullSized
           >
-            Crear
+            {processing ? "Creando usuario..." : "Crear"}
           </Button>
-          {checkPassword && (
+          {error && (
             <Alert color="failure" icon={HiInformationCircle}>
               <span>
-                <p>Contraseñas no coinciden</p>
+                <p>Algo salió mal!, por favor intente de nuevo.</p>
+              </span>
+            </Alert>
+          )}
+          {userCreated && (
+            <Alert color="success">
+              <span>
+                <p>Usuario creado con éxito</p>
               </span>
             </Alert>
           )}
