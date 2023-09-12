@@ -24,7 +24,7 @@ class BalanceApiView(APIView):
             Validated if object exist
         """
         valor = BalanceDetail.objects.filter(
-            user_id=id).values('balance', 'user__name', 'user__identification_number').first()
+            user_id=id).values('balance', 'user__name', 'user__uuid_user').first()
 
         return (valor)
 
@@ -65,15 +65,12 @@ class ReloadMoneyView(APIView):
         #     user_id=id_user).values('balance').first()['balance']
 
         new_balance = BalanceDetail.objects.get(user_id=id_user)
-        # print("****linea 68 ****")
-        # print(new_balance.balance)
-        # print(type(request.data['reload']))
+      
         new_balance.balance = (new_balance.balance + request.data['reload'])
         
-        # print("****linea 71 ****")
-        print(new_balance.balance)
+    
         new_balance.save()
-        print(new_balance.balance)
+        
   
         return Response(status=status.HTTP_201_CREATED)
 
@@ -83,7 +80,6 @@ class ReloadMoneyView(APIView):
 """
 
 
-# @method_decorator(csrf_exempt, name='dispatch')
 class PayView(APIView):
     #permission_classes = (permissions.IsAuthenticated,)
     #authentication_classes = (SessionAuthentication,)
@@ -129,25 +125,35 @@ class UserWithdrawal(APIView):
         }
         """
         code = random.randint(100000, 999999)
-        data2 = request.data
-        data2["code_validation"] = str(code)
-        identification_number = data2["identification_number"]
-
+        request_data = request.data
+        request_data["code_validation"] = str(code)
+        identification_number = request_data["identification_number"]
+        try:
+                id_user = User.objects.filter(
+                identification_number=identification_number).values('id').first()['id']
+        except:
+            return Response({'mensaje': 'usuario no existe'}, status=status.HTTP_404_NOT_FOUND)
+        
+        new_balance = BalanceDetail.objects.filter(
+                    user_id=id_user).values('balance').first()
+        if new_balance['balance'] < request_data['value']:
+          return Response({'mensaje': 'saldo insuficiente', 'saldo actual':new_balance['balance']}, status=status.HTTP_406_NOT_ACCEPTABLE)
+          
         try:
             withdrawal_m = withdrawal.objects.get(identification_number=identification_number)
             
-            withdrawal_m.code_validation = data2["code_validation"]
-            withdrawal_m.value = data2["value"]
+            withdrawal_m.code_validation = request_data["code_validation"]
+            withdrawal_m.value = request_data["value"]
             withdrawal_m.save()
 
             return Response({"code_validation": withdrawal_m.code_validation}, status=status.HTTP_200_OK)
 
         except withdrawal.DoesNotExist:
 
-            serializer = withdrawalSerializer(data=data2)
+            serializer = withdrawalSerializer(data=request_data)
             if serializer.is_valid(raise_exception=True):
 
-                withdrawal_m = withdrawal(**data2)
+                withdrawal_m = withdrawal(**request_data)
                 withdrawal_m.save()
                 print(withdrawal_m)
 

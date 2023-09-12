@@ -50,7 +50,7 @@ class backing_corresponsal(FormView):
             print('Se seleccionó retiro')
             response = requests.post('http://127.0.0.1:8000/api/v1/corresponsalretiro/', json={"identification_number": identification_number[0], "code_validation": code_validation})
                 
-            if response.status_code == 201:
+            if response.status_code == 201 or response.status_code == 200:
                 print('retiro exitosa')
                 response_data = response.json()
                 print(response_data)

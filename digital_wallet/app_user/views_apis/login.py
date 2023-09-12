@@ -1,6 +1,7 @@
 from ..models import *
 from django.contrib.auth import authenticate
 from rest_framework import status
+from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -12,7 +13,9 @@ from .validations import custom_validation, validate_email, validate_password
 from ..serializer import CustomTokenSerializer, UserSerializer
 
 
-class UserLogin(TokenObtainPairView):
+#class UserLogin(TokenObtainPairView):
+class UserLogin(APIView):  
+
   serializer_class = CustomTokenSerializer
   
   def post(self, request, *args, **kwargs):
@@ -24,8 +27,8 @@ class UserLogin(TokenObtainPairView):
         if login_serializer.is_valid():
             user_serializer = UserSerializer(user)
             return Response({
-              'token': login_serializer.validated_data.get('access'),
-              'refresh-token': login_serializer.validated_data.get('refresh'),
+              # 'token': login_serializer.validated_data.get('access'),
+              # 'refresh-token': login_serializer.validated_data.get('refresh'),
               'user': user_serializer.data,
               'message': 'Inicio de sesion exitoso'
             }, status=status.HTTP_200_OK)

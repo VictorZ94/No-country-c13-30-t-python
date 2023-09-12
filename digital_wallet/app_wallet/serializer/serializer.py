@@ -9,9 +9,9 @@ class BalanceDetailsSerializer(serializers.ModelSerializer):
 
 
 class BalanceSerializer(serializers.Serializer):
-    initial_balance = serializers.DecimalField(max_digits=10, decimal_places=2)
+    balance = serializers.DecimalField(max_digits=10, decimal_places=2)
     user__name = serializers.CharField()
-    user__identification_number = serializers.CharField()
+    user__uuid_user = serializers.CharField()
 
 
 class TransactionSerializer(serializers.ModelSerializer):
