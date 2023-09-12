@@ -9,11 +9,8 @@ const Reports = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  console.log("currentUser", currentUser);
-
   useEffect(() => {
-    if (currentUser === null || currentUser === undefined || currentUser === {}) {
-      console.log("Si entré aquí y está mal!");
+    if (!currentUser?.isAuthenticated) {
       return navigate('/login');
     }
   }, []);

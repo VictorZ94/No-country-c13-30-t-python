@@ -42,7 +42,7 @@ class ReloadMoneyView(APIView):
     # El proceso es extraer el id desde user usando la cedula
     # y luego en balance con el id sumar ese valor.
     permission_classes = (permissions.IsAuthenticated,)
-    #authentication_classes = (SessionAuthentication,)
+    # authentication_classes = (SessionAuthentication,)
 
     def post(self, request):
 

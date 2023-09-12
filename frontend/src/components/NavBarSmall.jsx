@@ -1,5 +1,6 @@
+/* eslint-disable import/no-absolute-path */
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
-import brandImage from "../assets/icon-digital-wallet.png";
+import brandImage from "/assets/icon-digital-wallet.png";
 
 export default function NavbarWithDropdown () {
   return (

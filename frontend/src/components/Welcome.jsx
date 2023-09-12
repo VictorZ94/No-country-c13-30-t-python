@@ -1,4 +1,5 @@
-import ReportImage from "../assets/reports-img.png";
+/* eslint-disable import/no-absolute-path */
+import ReportImage from "/assets/reports-img.png";
 
 const Welcome = () => {
   return (
