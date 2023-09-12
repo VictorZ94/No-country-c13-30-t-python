@@ -7,11 +7,11 @@ const Login = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     return navigate('/');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (currentUser?.isAuthenticated) {
+      return navigate('/');
+    }
+  }, []);
 
   return (
       <div className="h-screen flex">
