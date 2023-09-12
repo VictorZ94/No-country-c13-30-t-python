@@ -16,11 +16,18 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import BalanceApiView, PayView, ReloadMoneyView
+from .views_api.balance import *
+from .views_api.reload_money import *
+from .views_api.pay import *
+from .views_api.withdrawal import *
+from .views_api.cashier import *
+
 
 urlpatterns = [
     # ... otras URLs ...
     path('api/v1/saldo/<int:id>', BalanceApiView.as_view(), name='balance'),
     path('api/v1/pago/', PayView.as_view(), name='pagos'),
     path('api/v1/recarga/', ReloadMoneyView.as_view(), name='recarga'),
+    path('api/v1/retiro/', UserWithdrawal.as_view(), name='retiro'),
+    path('api/v1/corresponsalretiro/', CorresponsalWithdrawal.as_view(), name='corresponsalretiro'),
 ]
