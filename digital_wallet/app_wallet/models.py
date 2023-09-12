@@ -26,7 +26,8 @@ class Transaction(models.Model):
     transaction_date = models.DateTimeField('fecha_trasaccion',
                                             auto_now_add=True)
     # decula de quien recibe
-    # nombre de quien recibe
+    reference = models.CharField('referencia', max_length=50, blank=True, null=True)
+    reference_name = models.CharField('nombre', max_length=50, null=True, blank=True)
     amount = models.DecimalField('cantidad', max_digits=10, decimal_places=2)
     details = models.TextField(max_length=200)
     transaction_type = models.CharField('category', max_length=50)

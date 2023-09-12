@@ -17,7 +17,7 @@ class BalanceSerializer(serializers.Serializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ['user', 'amount', 'details', 'transaction_type']
+        fields = ['user', 'amount', 'details', 'transaction_type', 'reference', 'reference_name']
 
 
 class ReloadSerializer(serializers.Serializer):
