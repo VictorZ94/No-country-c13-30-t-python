@@ -9,7 +9,7 @@ export const client = axios.create({
 });
 
 const user = JSON.parse(localStorage.getItem("user"));
-console.log("utils", user);
+
 export const token = {
   headers: { Authorization: `Bearer ${user?.token}` }
 };

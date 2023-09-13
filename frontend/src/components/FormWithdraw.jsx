@@ -1,7 +1,8 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
+import { client } from "../utils/constants";
 
-const FormWithdraw = () => {
+const FormWithdraw = ({ saldo }) => {
   const [formWithdraw, setFormWithdraw] = useState({});
 
   const handleChange = (name, value) => {
@@ -13,7 +14,10 @@ const FormWithdraw = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(formWithdraw));
+    client.post("/api/v1/retiro/", {
+      identification_number: formWithdraw?.cedula,
+      value: formWithdraw?.cantity
+    }).then(res => console.log(res));
   };
 
   return (
@@ -34,7 +38,7 @@ const FormWithdraw = () => {
             step=".01"
             min={0}
             className="w-full rounded-lg text-sm p-2.5"
-            max={1000000}
+            max={saldo}
             type="number"
             onChange={(e) => handleChange("cantity", e.target.value)}
           />
@@ -64,6 +68,7 @@ const FormWithdraw = () => {
       <div className="mb-4 flex justify-center">
         <Button
           type="submit"
+          disabled={!formWithdraw?.cantity || !formWithdraw?.cedula}
           className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
         >
           Enviar pago
