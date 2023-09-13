@@ -37,9 +37,6 @@ class backing_corresponsal(FormView):
                     # new_balance.balance = (new_balance.balance + int(value))
                     # new_balance.save()
                     print('Recarga exitosa')
-                    print(usuario)
-                    print(response)
-                    self.registerTransaction(usuario["id"],  value, "Recarga Corresponsal", "Recarga", identification_number, usuario['name'])
                 else:
                     print('Error en la recarga ')
                     print(response)
@@ -56,28 +53,9 @@ class backing_corresponsal(FormView):
                 print('retiro exitosa')
                 response_data = response.json()
                 print(response_data)
-                self.registerTransaction(response_data["id"],   float(response_data["amount"]), "Retiro Corresponsal", "Retiro", identification_number[0], usuario['name'])
 
 
             else:
                 print('Error en el retiro ')
-                print(response)
-
-
-    def registerTransaction(self,user,amount,details,transaction_type, reference, reference_name):
-            url="http://127.0.0.1:8000/api/v1/pago/"
-            print(user)
-            print(amount)
-
-            response = requests.post(url, json={"user": user,
-                                                "amount": amount,
-                                                "details": details,
-                                                "transaction_type": transaction_type,
-                                                "reference":reference,
-                                                "reference_name": reference_name})
-            if response.status_code == 201:
-                print('se registro la transaccion')
-            else:
-                print('Error en la transaccion ')
                 print(response)
 

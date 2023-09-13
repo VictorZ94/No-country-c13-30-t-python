@@ -21,6 +21,7 @@ from .views_api.reload_money import *
 from .views_api.pay import *
 from .views_api.withdrawal import *
 from .views_api.cashier import *
+from .views_api.transaction_withdrawal import TransactionView
 
 
 urlpatterns = [
@@ -30,4 +31,6 @@ urlpatterns = [
     path('api/v1/recarga/', ReloadMoneyView.as_view(), name='recarga'),
     path('api/v1/retiro/', UserWithdrawal.as_view(), name='retiro'),
     path('api/v1/corresponsalretiro/', CorresponsalWithdrawal.as_view(), name='corresponsalretiro'),
+    path('api/v1/Transaction/', TransactionView.as_view(), name='registerTransaction'),
+
 ]
