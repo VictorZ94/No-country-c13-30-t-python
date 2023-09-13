@@ -37,6 +37,8 @@ class CorresponsalWithdrawal(APIView):
                     balanceDetail.balance = (balanceDetail.balance - withdrawal_m.value)
                     balanceDetail.save()
                     withdrawal_m.delete()
+                    success = self.register_trasaction(id_user["id"], identification_number, withdrawal_m.value)
+
                     return Response({"mensaje": "retiro exitoso", "id":id_user["id"],"amount":withdrawal_m.value}, status=status.HTTP_201_CREATED)
                 else:
                     return Response({"mensaje": "Saldo insuficiente"}, status=status.HTTP_400_BAD_REQUEST)
@@ -45,3 +47,24 @@ class CorresponsalWithdrawal(APIView):
         else:
             return Response({"mensaje": "Error de validación"}, status=status.HTTP_400_BAD_REQUEST)
 
+    def register_trasaction(self, id_user, identification, reload):
+        """
+            * id_user : user id 
+            * identification: identification number
+            * reload: amount of money to be recharged
+            method creates an instance of trasaction in the database after
+            a  reload is performed
+        """
+        user = User.objects.get(id=id_user)
+
+        new_trasaction = Transaction(
+            user = user,
+            reference = identification,
+            reference_name = 'sucursal',
+            amount = reload,
+            details = "Retiro",
+            transaction_type="Retiro"
+            )
+        print(new_trasaction)
+        new_trasaction.save()
+        return Response(status=status.HTTP_201_CREATED)
