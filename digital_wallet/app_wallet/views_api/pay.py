@@ -30,21 +30,12 @@ class PayView(APIView):
         current_balance = current_balance['balance']
 
         serializer = TransactionSerializer(data=request.data)
-        print("****************")
-        print(request.data)
         if serializer.is_valid(raise_exception=True):
-
             validatedData = serializer.validated_data
-
             transaction = Transaction(**validatedData)
-            # transaction.amount
-            print(float(current_balance) >= float(transaction.amount))
-            print(f'{current_balance} {transaction.amount}')
-            print(type(current_balance), type(transaction.amount))
-            
-    
+        
             if float(current_balance) >= transaction.amount:
-                print(type(current_balance), type(transaction.amount))
+ 
                 transaction.save()
                 new_balance = BalanceDetail.objects.get(
                     user_id=id)
