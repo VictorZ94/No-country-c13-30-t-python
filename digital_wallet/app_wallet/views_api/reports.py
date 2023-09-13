@@ -24,5 +24,4 @@ class ReportTransaction(APIView):
       if not transaction:
           return Response({'mensaje':'Usuario no existe'}, status=status.HTTP_404_NOT_FOUND)
       serializer =  TransactionReportSerializer(transaction, many=True)
-      print(serializer.data)
       return Response(serializer.data)
