@@ -18,19 +18,16 @@ The main objective is to facilitate users in the management and use of their ele
 APIS:
 For more information about apis.
 ![click he](digital_wallet/app_wallet/README.md)
-
-- api/v1/saldo/<int:id>
-- api/v1/pago/<int:id>
-- api/v1/recarga/
+![click he](digital_wallet/app_user/README.md)
 
 dependencies:
 
-Django==4.2.4
-djangorestframework==3.14.0
-psycopg2==2.9.7
+- Django==4.2.4
+- djangorestframework==3.14.0
+- psycopg2==2.9.7
 
 Authors:
 ![Daniel Ruiz](https://www.linkedin.com/in/daniel-ruiz)
-![Jorge Orlando Calambás]()
+![Jorge Orlando Calambás](https://www.linkedin.com/in/jorge-cal-c/)
 ![Victor Zuluaga]()
 ![Alexis Mesa ]()
