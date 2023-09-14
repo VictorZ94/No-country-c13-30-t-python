@@ -14,7 +14,6 @@ const FormLogin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("useEffect Login", currentUser?.isAuthenticated);
     if (currentUser?.isAuthenticated) {
       return navigate('/');
     }
