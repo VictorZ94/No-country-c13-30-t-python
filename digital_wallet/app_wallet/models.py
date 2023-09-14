@@ -29,7 +29,7 @@ class Transaction(models.Model):
     reference = models.CharField('referencia', max_length=50, blank=True, null=True)
     reference_name = models.CharField('nombre', max_length=50, null=True, blank=True)
     amount = models.DecimalField('cantidad', max_digits=10, decimal_places=2)
-    details = models.TextField(max_length=200)
+    details = models.TextField(max_length=200, null=True, blank=True)
     transaction_type = models.CharField('category', max_length=50)
 
     class Meta:

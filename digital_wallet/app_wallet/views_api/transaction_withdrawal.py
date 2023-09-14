@@ -10,7 +10,6 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework import status, permissions
 from ..models import BalanceDetail
 from app_user.models import *
-import random
 
 
 """
@@ -30,8 +29,6 @@ class TransactionView(APIView):
         current_balance = current_balance['balance']
 
         serializer = TransactionSerializer(data=request.data)
-        print("****************")
-        print(request.data)
         if serializer.is_valid(raise_exception=True):
 
             validatedData = serializer.validated_data

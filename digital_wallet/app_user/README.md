@@ -1,11 +1,11 @@
 # http://url/user/<int:id> :
 
-- Obtiene el usuario con el id del usuario
+- Gets the user with the user id using request get
 
 # http://url/register :
 
-- registra un usuario nuevo
-  ejemplo:
+- register a new user
+  example:
   {
   "password":"123456789",
   "name":"admin",
@@ -16,7 +16,22 @@
   "identification_type":"cedula"
   }
 
-# http://127.0.0.1:8000/login:
+# http://url/login:
 
-ejemplo:
+example:
 { "email":"admin@gmail.com","password":"123456789"}
+
+# http:://url/'user/<int:id>:
+
+- performing a patch request updates the object partially
+  example:
+
+{
+"password":"123456789",
+"name":"admin",
+"country_code":"57",
+"email":"adminx@gmail.com",
+"identification_number":"1243878990",
+"phone_number":"333333333333",
+"identification_type":"cedula"
+}
