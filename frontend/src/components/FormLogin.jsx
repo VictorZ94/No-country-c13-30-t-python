@@ -1,7 +1,6 @@
 import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import ButtonOutline from "./CustomButtonOutline";
 import { client } from "../utils/constants";
 import { useAuth } from "../context/auth";
 
@@ -90,7 +89,6 @@ const FormLogin = () => {
       >
         Submit
       </Button>
-      <ButtonOutline></ButtonOutline>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
           Todavía no tienes una cuenta?
           <Link
