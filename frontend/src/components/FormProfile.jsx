@@ -6,16 +6,6 @@ import { useState } from "react";
 const FormProfile = ({ data }) => {
   const [userData, setUserData] = useState(data);
 
-  // useEffect(() => {
-  //   client.get("/user/1", token)
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       setUserData(data?.user);
-  //     }).catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
   const handleChange = (name, value) => {
     setUserData({
       ...userData,
