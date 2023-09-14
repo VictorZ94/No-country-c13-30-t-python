@@ -22,7 +22,7 @@ SECRET_KEY = 'django-insecure-&1#bewct18wkh_=moz)fyu1c%ka4lbkxnzb@%at_hyb(-**6f+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jc123.pythonanywhere.com', 'c13-30-t-python.vercel.app']
+ALLOWED_HOSTS = ['jc123.pythonanywhere.com', 'c13-30-t-python.vercel.app', "*"]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'digital_wallet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'datos2.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -172,3 +172,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',
 # ]
+
+PROD = True
