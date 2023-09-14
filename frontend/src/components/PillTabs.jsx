@@ -5,7 +5,6 @@ import FormWithdraw from "./FormWithdraw";
 
 const PillsTabs = ({ saldo }) => {
   const [active, setActive] = useState(0);
-  const [isThereMoney] = useState(saldo > 0);
 
   const Items = [
     {
@@ -52,7 +51,7 @@ const PillsTabs = ({ saldo }) => {
             id={item.id}
             role="tabpanel"
           >
-            {isThereMoney
+            {saldo > 0
               ? formLayout[active]
               : <NoMoney/>
             }

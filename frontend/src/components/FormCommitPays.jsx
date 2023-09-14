@@ -1,8 +1,13 @@
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
+import { client } from "../utils/constants";
+import { useAuth } from "../context/auth";
 
 const FormCommitPays = () => {
-  const [formPay, setFormPay] = useState({});
+  const [formPay, setFormPay] = useState({
+    success: false
+  });
+  const { currentUser } = useAuth();
 
   const handleChange = (name, value) => {
     setFormPay({
@@ -13,7 +18,16 @@ const FormCommitPays = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(formPay));
+    client.post("/api/v1/pago/",
+      {
+        amount: +formPay?.cantity,
+        details: formPay?.details,
+        transaction_type: formPay?.pay_type,
+        reference: formPay?.referencia,
+        reference_name: formPay?.referencia_name,
+        user: currentUser?.user?.id
+      }
+    ).then(res => console.log(res)).catch(err => console.log(err));
   };
 
   return (
@@ -75,28 +89,68 @@ const FormCommitPays = () => {
         <legend className="text-md font-medium mb-4">
           Datos
         </legend>
-        <div className="mb-4">
+        <div className="flex">
+          <div className="mb-4 mr-3">
+            <div className="mb-2 block">
+              <Label
+                htmlFor="referencia"
+                value="Referencia o CC"
+              />
+            </div>
+            <TextInput
+              id="referencia"
+              name="referencia"
+              placeholder="1241597554"
+              required
+              type="number"
+              min={0}
+              color={"secondary-c"}
+              onChange={(e) => handleChange("referencia", e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
           <div className="mb-2 block">
             <Label
-              htmlFor="cedula"
-              value="Número de cédula"
+              htmlFor="referencia_name"
+              value="nombre referencia"
             />
           </div>
           <TextInput
-            id="cedula"
-            name="cedula"
-            placeholder="1241597554"
-            required
-            type="number"
-            min={0}
+            id="referencia_name"
+            name="referencia_name"
+            placeholder="falabella, Oscar Woss..."
+            type="text"
             color={"secondary-c"}
-            onChange={(e) => handleChange("cedula", e.target.value)}
+            onChange={(e) => handleChange("referencia_name", e.target.value)}
+          />
+        </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div className="max-w-md" id="textarea">
+          <div className="mb-2 block">
+            <Label
+              htmlFor="comment"
+              value="Your message"
+            />
+          </div>
+          <Textarea
+            id="comment"
+            name="details"
+            placeholder="Escribe los detalles del pago..."
+            color={"secondary-c"}
+            rows={2}
+            onChange={(e) => handleChange("details", e.target.value)}
           />
         </div>
       </fieldset>
-      <div className="mb-4 flex justify-center">
+      <div className="my-4 flex justify-center">
         <Button
           type="submit"
+          disabled={
+            !formPay?.referencia ||
+            !formPay?.cantity
+          }
           className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
         >
           Enviar pago
