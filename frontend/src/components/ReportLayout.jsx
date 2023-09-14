@@ -6,9 +6,6 @@ import { useAuth } from "../context/auth";
 import { useEffect, useState } from "react";
 import { client } from "../utils/constants";
 
-// @core
-import "primereact/resources/primereact.min.css";
-
 const ReportsLayout = () => {
   const { currentUser } = useAuth();
   const [historial, setHistorial] = useState([]);
