@@ -1,11 +1,15 @@
-import { Button, Label, TextInput, Textarea } from "flowbite-react";
+import { Alert, Button, Label, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
 import { client } from "../utils/constants";
 import { useAuth } from "../context/auth";
+import { HiInformationCircle } from "react-icons/hi";
 
-const FormCommitPays = () => {
-  const [formPay, setFormPay] = useState({
-    success: false
+const FormCommitPays = ({ saldo }) => {
+  const [formPay, setFormPay] = useState();
+  const [info, setInfo] = useState({
+    success: false,
+    processing: false,
+    error: false
   });
   const { currentUser } = useAuth();
 
@@ -17,6 +21,7 @@ const FormCommitPays = () => {
   };
 
   const handleSubmit = (e) => {
+    setInfo({ ...info, processing: true });
     e.preventDefault();
     client.post("/api/v1/pago/",
       {
@@ -27,7 +32,20 @@ const FormCommitPays = () => {
         reference_name: formPay?.referencia_name,
         user: currentUser?.user?.id
       }
-    ).then(res => console.log(res)).catch(err => console.log(err));
+    )
+      .then(res => setInfo({
+        ...info,
+        success: true,
+        processing: false,
+        error: false
+      }))
+      .catch(_ => setInfo({
+        ...info,
+        success: false,
+        processing: false,
+        error: true
+      }));
+    setInfo({ ...info, processing: false });
   };
 
   return (
@@ -83,7 +101,7 @@ const FormCommitPays = () => {
             step=".01"
             min={0}
             className="w-full rounded-lg text-sm p-2.5"
-            max={1000000}
+            max={saldo}
           />
         </div>
         <legend className="text-md font-medium mb-4">
@@ -127,7 +145,7 @@ const FormCommitPays = () => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="max-w-md" id="textarea">
+        <div className="max-w-md mb-2" id="textarea">
           <div className="mb-2 block">
             <Label
               htmlFor="comment"
@@ -144,6 +162,20 @@ const FormCommitPays = () => {
           />
         </div>
       </fieldset>
+      {info?.success && (
+        <Alert color="success">
+          <span>
+            <p>Pago realizado con éxito</p>
+          </span>
+        </Alert>
+      )}
+      {info?.error && (
+        <Alert color="failure" icon={HiInformationCircle}>
+          <span>
+            <p>Algo salió mal!, por favor intente de nuevo.</p>
+          </span>
+        </Alert>
+      )}
       <div className="my-4 flex justify-center">
         <Button
           type="submit"
@@ -153,7 +185,7 @@ const FormCommitPays = () => {
           }
           className="bg-secondary-c-500 enabled:hover:bg-secondary-c focus:ring-secondary-c-200 dark:bg-secondary-c-500 dark:enabled:hover:bg-secondary-c-500 dark:focus:ring-secondary-c-200 rounded-lg focus:ring-2"
         >
-          Enviar pago
+          {info?.processing ? "Procesando pago..." : "Enviar pago"}
         </Button>
       </div>
     </form>

@@ -5,11 +5,13 @@ import { MdAccountBalanceWallet } from "react-icons/md";
 import { BsFileEarmarkTextFill } from "react-icons/bs";
 import { IoLogoUsd } from "react-icons/io";
 import { AiFillLock } from "react-icons/ai";
+
 // @images
 import LogoWallet from "/assets/icon-digital-wallet.png";
 import User1 from "/assets/avatar-example.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
+import { PROD, SERVER_LOCAL, SERVER_PROD } from '../utils/constants';
 
 const SideNavbar = () => {
   const itemName = window.location.pathname;
@@ -50,15 +52,17 @@ const SideNavbar = () => {
               </Link>
             </li>
             <li className="flex">
-              <Link
-                to="/charge_balance"
+              <a
+                href={`${PROD ? SERVER_PROD : SERVER_LOCAL}/corresponsalbancario/`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`nav-item ${itemName === "/charge_balance" ? "text-secondary-c-500" : "text-gray-900"}`}
               >
               <IoLogoUsd
                 className={`nav-icon-item ${itemName === "/charge_balance" ? "text-secondary-c-500" : "text-gray-500"}`}
               />
                 Recarga de fondos
-              </Link>
+              </a>
             </li>
             <li className="flex">
               <Link
