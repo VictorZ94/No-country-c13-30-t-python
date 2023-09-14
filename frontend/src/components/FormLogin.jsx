@@ -90,7 +90,6 @@ const FormLogin = () => {
       >
         Submit
       </Button>
-      <ButtonOutline></ButtonOutline>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
           Todavía no tienes una cuenta?
           <Link
