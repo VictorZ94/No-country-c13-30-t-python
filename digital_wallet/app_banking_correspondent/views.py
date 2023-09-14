@@ -3,16 +3,19 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from app_user.models import *
 import requests
+from django.conf import settings
 #from app_wallet.models import User
 
 
 class backing_corresponsal(FormView):
+    client_prod = "https://jc123.pythonanywhere.com"
+    client_local = "http://localhost:8000"
 
     template_name = 'formulario.html'
     form_class = UsuarioForm
     success_url = reverse_lazy('bancking:corresponsalbancario')
     global url_base
-    url_base = "https://jc123.pythonanywhere.com"
+    url_base = client_prod if settings.PROD == True else client_local
     def form_valid(self, form):
         identification_number = form.cleaned_data['cedula'],
         value =form.cleaned_data['codigo_validacion']
