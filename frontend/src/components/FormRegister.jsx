@@ -29,7 +29,6 @@ const FormRegister = () => {
     e.preventDefault();
     setPasswordNoMatch(false);
     setProcessing(true);
-    console.log(createUser);
     if (createUser?.password !== createUser?.password_confirmation) {
       setPasswordNoMatch(true);
       return;
