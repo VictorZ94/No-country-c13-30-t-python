@@ -23,7 +23,7 @@ const Home = () => {
             <SideNavbar />
         </div>
         <div className="p-8 flex-auto">
-          <HomeLayout/>
+          <HomeLayout />
         </div>
       </div>
     </div>

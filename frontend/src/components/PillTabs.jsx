@@ -3,9 +3,8 @@ import NoMoney from './NoMoney';
 import FormCommitPays from './FormCommitPays';
 import FormWithdraw from "./FormWithdraw";
 
-const PillsTabs = () => {
+const PillsTabs = ({ saldo }) => {
   const [active, setActive] = useState(0);
-  const [isThereMoney] = useState(true);
 
   const Items = [
     {
@@ -19,8 +18,8 @@ const PillsTabs = () => {
   ];
 
   const formLayout = {
-    0: <FormCommitPays />,
-    1: <FormWithdraw />
+    0: <FormCommitPays saldo={saldo}/>,
+    1: <FormWithdraw saldo={saldo}/>
   };
 
   return (
@@ -43,9 +42,6 @@ const PillsTabs = () => {
           </li>
         ))}
         </ul>
-        {/* <span className="mr-2">
-          <a href="#" className="inline-block p-4 rounded-lg dark:text-white">A</a>
-        </span> */}
       </div>
       <div>
         {Items.map((item, idx) => (
@@ -55,7 +51,7 @@ const PillsTabs = () => {
             id={item.id}
             role="tabpanel"
           >
-            {isThereMoney
+            {saldo > 0
               ? formLayout[active]
               : <NoMoney/>
             }

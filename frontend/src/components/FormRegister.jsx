@@ -15,6 +15,7 @@ const FormRegister = () => {
   const [userCreated, setUserCreated] = useState(false);
   const [error, setError] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [passwordNoMatch, setPasswordNoMatch] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (name, value) => {
@@ -26,7 +27,12 @@ const FormRegister = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setPasswordNoMatch(false);
     setProcessing(true);
+    if (createUser?.password !== createUser?.password_confirm) {
+      setPasswordNoMatch(true);
+      return;
+    }
 
     client.post(
       "/register",
@@ -201,6 +207,13 @@ const FormRegister = () => {
                 <p>Usuario creado con éxito</p>
               </span>
             </Alert>
+          )}
+          {passwordNoMatch && (
+            <Alert color="failure" icon={HiInformationCircle}>
+            <span>
+              <p>Contraseñas no coinciden.</p>
+            </span>
+          </Alert>
           )}
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             Ya tiene una cuenta?{" "}
