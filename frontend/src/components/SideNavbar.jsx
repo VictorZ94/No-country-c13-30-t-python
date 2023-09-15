@@ -51,7 +51,7 @@ const SideNavbar = () => {
                 Reportes
               </Link>
             </li>
-            <li className="flex">
+            {/* <li className="flex">
               <a
                 href={`${PROD ? SERVER_PROD : SERVER_LOCAL}/corresponsalbancario/`}
                 target="_blank"
@@ -63,7 +63,7 @@ const SideNavbar = () => {
               />
                 Recarga de fondos
               </a>
-            </li>
+            </li> */}
             <li className="flex">
               <Link
                 to="/security"
