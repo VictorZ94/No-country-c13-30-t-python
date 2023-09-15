@@ -13,13 +13,17 @@ const FormProfile = ({ data }) => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <div className="max-w-3xl">
         <div className="text-primario-c-500 mb-4">
           <h1 className="text-3xl">Datos personales</h1>
         </div>
-        <form className="flex flex-1 mx-auto flex-col gap-4">
+        <form className="flex flex-1 mx-auto flex-col gap-4" onSubmit={handleSubmit}>
             <div className="flex">
               <div className="mb-2 mr-3 flex-1">
                 <Label
@@ -139,9 +143,6 @@ const FormProfile = ({ data }) => {
             </Button>
         </form>
       </div>
-      {/* <div className="mt-16 mx-auto">
-        <img src="./src/assets/icon-digital-wallet.png" alt="logo digital wallet"/>
-      </div> */}
     </>
   );
 };
