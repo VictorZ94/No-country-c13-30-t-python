@@ -3,7 +3,6 @@ import { Avatar, Sidebar } from 'flowbite-react';
 import { HiUser, HiOutlineLogout } from 'react-icons/hi';
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { BsFileEarmarkTextFill } from "react-icons/bs";
-import { IoLogoUsd } from "react-icons/io";
 import { AiFillLock } from "react-icons/ai";
 
 // @images
@@ -11,11 +10,17 @@ import LogoWallet from "/assets/icon-digital-wallet.png";
 import User1 from "/assets/avatar-example.png";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth";
-import { PROD, SERVER_LOCAL, SERVER_PROD } from '../utils/constants';
+import { useEffect, useRef } from 'react';
 
 const SideNavbar = () => {
   const itemName = window.location.pathname;
   const { currentUser } = useAuth();
+
+  useEffect(() => {
+    const secondNav = document.querySelectorAll('nav')[1]?.firstChild;
+    secondNav?.classList.add('fixed');
+    secondNav?.classList.add('w-80');
+  });
 
   return (
     <Sidebar className="w-80">
