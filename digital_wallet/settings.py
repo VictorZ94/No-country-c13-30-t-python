@@ -31,7 +31,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-    'https://c13-30-t-python.vercel.app'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -50,7 +49,6 @@ DJANGO_APPS = [
     'app_user',
     'app_banking_correspondent',
     'rest_framework_simplejwt',
-
 ]
 
 # LOCAL_APPS = ['app_user.apps.AppUserConfig', 'app_wallet.apps.AppWalletConfig']
@@ -189,5 +187,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     'django.contrib.auth.backends.ModelBackend',
 # ]
 
-PROD = False
+PROD = True
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
