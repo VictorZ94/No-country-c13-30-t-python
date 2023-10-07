@@ -3,3 +3,4 @@ my_own_backend/
 __pycache__
 db.sqlite3
 datos.sqlite3
+.env
