@@ -31,6 +31,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
+    'https://no-country-c13-30-t-python.vercel.app/',
+    'https://digital-wallet.victorzuluaga.com/'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
