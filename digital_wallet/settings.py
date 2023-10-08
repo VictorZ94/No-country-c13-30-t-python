@@ -31,8 +31,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-    'https://no-country-c13-30-t-python.vercel.app/',
-    'https://digital-wallet.victorzuluaga.com/'
+    'https://no-country-c13-30-t-python.vercel.app',
+    'https://digital-wallet.victorzuluaga.com'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -101,20 +101,20 @@ WSGI_APPLICATION = 'digital_wallet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': config(
-        'DATABASE_URL',
-        default=BASE_DIR / 'db.sqlite3',
-        cast=db_url
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': config(
+#         'DATABASE_URL',
+#         default=BASE_DIR / 'db.sqlite3',
+#         cast=db_url
+#     )
+# }
 
 AUTH_USER_MODEL = 'app_user.User'
 REST_FRAMEWORK = {

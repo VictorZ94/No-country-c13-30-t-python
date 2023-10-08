@@ -8,7 +8,7 @@ from django.conf import settings
 
 
 class backing_corresponsal(FormView):
-    client_prod = "https://jc123.pythonanywhere.com"
+    client_prod = "https://digital-wallet-bank-1bcfd69b56e9.herokuapp.com"
     client_local = "http://localhost:8000"
 
     template_name = 'formulario.html'
