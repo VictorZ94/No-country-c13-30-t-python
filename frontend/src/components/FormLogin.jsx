@@ -1,4 +1,4 @@
-import { Alert, Button, Label, TextInput } from "flowbite-react";
+import { Alert, Button, Checkbox, Label, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { client } from "../utils/constants";
@@ -6,6 +6,7 @@ import { useAuth } from "../context/auth";
 
 const FormLogin = () => {
   const [userLogin, setUserLogin] = useState({});
+  const [userDemo, setUserDemo] = useState(false);
   const [alertError, setAlerError] = useState(false);
   const { setCurrentUser } = useAuth();
   // eslint-disable-next-line no-unused-vars
@@ -14,7 +15,7 @@ const FormLogin = () => {
 
   useEffect(() => {
     if (currentUser?.isAuthenticated) {
-      return navigate('/');
+      return navigate("/");
     }
   }, []);
 
@@ -22,28 +23,43 @@ const FormLogin = () => {
     const { name, value } = target;
     setUserLogin({
       ...userLogin,
-      [name]: value
+      [name]: value,
     });
   };
+
+  const checkDemo = (e) => setUserDemo(e.target.checked);
+  useEffect(() => {
+    if (userDemo) {
+      setUserLogin({
+        email: "bslafford0@upenn.edu",
+        password: "nM102p{hS",
+      });
+    } else {
+      setUserLogin({});
+    }
+  }, [userDemo]);
+
+  console.log(userDemo);
+  console.log(userLogin);
 
   const handleSubmit = (e) => {
     setAlerError(false);
     e.preventDefault();
-    client.post(
-      "/login",
-      {
+    client
+      .post("/login", {
         email: userLogin.email,
-        password: userLogin.password
-      }
-    ).then(res => {
-      const userLoggedIn = { ...res.data, isAuthenticated: true };
-      setCurrentUser(userLoggedIn);
-      localStorage.setItem('user', JSON.stringify(userLoggedIn));
-      return navigate('/');
-    }).catch(err => {
-      console.log(err);
-      setAlerError(true);
-    });
+        password: userLogin.password,
+      })
+      .then((res) => {
+        const userLoggedIn = { ...res.data, isAuthenticated: true };
+        setCurrentUser(userLoggedIn);
+        localStorage.setItem("user", JSON.stringify(userLoggedIn));
+        return navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setAlerError(true);
+      });
   };
 
   return (
@@ -65,6 +81,7 @@ const FormLogin = () => {
           placeholder="name@digitalwallet.com"
           required
           type="email"
+          value={userLogin?.email || ""}
           color={"secondary-c"}
           onChange={handleChange}
         />
@@ -76,6 +93,7 @@ const FormLogin = () => {
         <TextInput
           id="password"
           name="password"
+          value={userLogin.password || ""}
           placeholder="***********"
           required
           type="password"
@@ -90,25 +108,37 @@ const FormLogin = () => {
         Submit
       </Button>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-          Todavía no tienes una cuenta? {" "}
-          <Link
-            to="/register"
-            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-          >
-            Registrate aquí
-          </Link>
+        Todavía no tienes una cuenta?{" "}
+        <Link
+          to="/register"
+          className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+        >
+          Registrate aquí
+        </Link>
       </p>
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          id="user-demo"
+          className="rounded"
+          onClick={checkDemo}
+        />
+        <Label
+          htmlFor="user-demo"
+          className="text-sm font-light text-gray-500 dark:text-gray-400"
+        >
+          Usuario demo
+        </Label>
+      </div>
       {alertError && (
         <Alert color="failure">
           <span>
-            <p>
-              Email o Contraseña incorrecto.
-            </p>
+            <p>Email o Contraseña incorrecto.</p>
           </span>
         </Alert>
       )}
       <div className="mt-16 mx-auto">
-        <img src="/assets/icon-digital-wallet.png" alt="logo digital wallet"/>
+        <img src="/assets/icon-digital-wallet.png" alt="logo digital wallet" />
       </div>
     </form>
   );
